@@ -5,7 +5,7 @@ function toBase64(file) {
     const reader = new FileReader();
 
     reader.onload = () => resolve(reader.result);
-    reader.onerror = (err) => reject(err);
+    reader.onerror = reject;
 
     reader.readAsDataURL(file);
   });
@@ -29,8 +29,6 @@ async function createIdentity() {
       image_base64 = await toBase64(imageInput.files[0]);
     }
 
-    console.log("SENDING REQUEST");
-
     const res = await fetch("/api/register", {
       method: "POST",
       headers: {
@@ -45,8 +43,6 @@ async function createIdentity() {
       })
     });
 
-    console.log("STATUS:", res.status);
-
     const data = await res.json();
 
     console.log("REGISTER RESPONSE:", data);
@@ -56,44 +52,31 @@ async function createIdentity() {
       return;
     }
 
-    const user =
-      data.user ||
-      (data.data && data.data[0]) ||
-      data.data;
+    const user = data.user;
 
-    if (!user) {
-      console.log("USER DATA NOT FOUND", data);
-      alert("لم يتم العثور على بيانات المستخدم");
-      return;
-    }
-
-    // حفظ الهوية محلياً
-    if (user.identity_number) {
-      localStorage.setItem(
-        "vm_user_id",
-        user.identity_number
-      );
-    }
+    // ✅ نحفظ session_id لأنه الموجود فعليًا
+    localStorage.setItem(
+      "session_id",
+      user.session_id
+    );
 
     showUser(user);
 
   } catch (err) {
 
-    console.error("CREATE ERROR:", err);
-
+    console.error(err);
     alert("فشل الاتصال بالـ API");
   }
 }
 
 window.onload = async () => {
 
-  console.log("WINDOW LOADED");
+  const session_id =
+    localStorage.getItem("session_id");
 
-  const id = localStorage.getItem("vm_user_id");
+  console.log("SESSION:", session_id);
 
-  console.log("STORED ID:", id);
-
-  if (!id) {
+  if (!session_id) {
     return;
   }
 
@@ -105,43 +88,33 @@ window.onload = async () => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        identity_number: id
+        session_id
       })
     });
 
-    console.log("GET USER STATUS:", res.status);
-
     const data = await res.json();
 
-    console.log("GET USER RESPONSE:", data);
+    console.log("GET USER:", data);
 
     if (!data.success) {
       return;
     }
 
-    const user = data.data || data.user;
-
-    if (!user) {
-      return;
-    }
-
-    showUser(user);
+    showUser(data.user);
 
   } catch (err) {
 
-    console.error("GET USER ERROR:", err);
+    console.error(err);
   }
 };
 
 function showUser(user) {
 
-  console.log("SHOW USER:", user);
-
   document.getElementById("cardName").innerText =
     user.name || "";
 
   document.getElementById("cardId").innerText =
-    "ID: " + (user.identity_number || "");
+    "SESSION: " + (user.session_id || "");
 
   document.getElementById("cardCity").innerText =
     user.city || "";
