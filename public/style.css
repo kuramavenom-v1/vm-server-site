@@ -1,31 +1,46 @@
-Body {
+/* إعدادات الشاشة الأساسية والتوسيط الموزون للجوال */
+html, body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f0f0f;
-  color: #ffffff;
-  /* تضمن عدم وجود أي حركة أو تمرير أفقي غريب على الجوال */
-  overflow-x: hidden; 
+  padding: 0;
   width: 100%;
+  height: 100%;
+  overflow: hidden; /* يمنع التمرير والحركة الأفقية والعمودية تماماً على الجوال */
+  background: #0f0f0f; /* لون الخلفية الأصلي */
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+}
+
+/* حاوية التوسيط المطلق للكارد ليكون في السنتر تماماً */
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 10; /* لضمان ظهور الكارد فوق الأشكال المتحركة */
 }
 
 h1 {
   text-align: center;
-  margin-top: 20px;
-  font-size: 1.8rem; /* تصغير الخط قليلاً ليناسب الشاشات الصغيرة */
+  margin: 0 0 15px 0; /* تكييف الهوامش للتوسط داخل الكارد */
+  font-size: 1.8rem; 
   padding: 0 10px;
 }
 
 .card {
-  background: #1a1a1a;
+  background: #1a1a1a; /* لون الكارد الأصلي */
   padding: 20px;
-  margin: 20px auto;
-  /* التعديل الجوهري هنا لجعل الكارد مرن ومناسب للجوال */
   width: 90%; 
   max-width: 300px; 
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(255,255,255,0.05);
-  /* لمنع البادنج من زيادة حجم الكارد واختراق أبعاد الشاشة */
   box-sizing: border-box; 
+  
+  /* ترتيب داخلي مرن للأزرار لتطابق الأبعاد */
+  display: flex;
+  flex-direction: column;
+  gap: 8px; 
 }
 
 input, select {
@@ -36,19 +51,19 @@ input, select {
   border-radius: 8px;
   background: #111;
   color: #fff;
-  box-sizing: border-box; /* لضمان عدم خروج المدخلات عن حدود الكارد */
+  box-sizing: border-box; 
 }
 
 button {
   width: 100%;
   padding: 10px;
-  margin-top: 10px;
   border: none;
   border-radius: 8px;
   background: #ffffff;
   color: #000;
   cursor: pointer;
   box-sizing: border-box;
+  font-weight: bold;
 }
 
 button:hover {
@@ -57,4 +72,82 @@ button:hover {
 
 .hidden {
   display: none;
+}
+
+/* --- نظام الخلفية الهندسية المتحركة المحيطة بالكارد --- */
+
+.bg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* شبكة رقمية خفيفة جداً متناسقة مع ألوانك */
+.matrix-grid {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 30px 30px;
+  transform: rotate(15deg);
+}
+
+/* الشكل الهندسي الأول: حلقة برمجية دائرية تدور حول السنتر */
+.shape-1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 290px;
+  height: 290px;
+  margin-top: -145px;
+  margin-left: -145px;
+  border: 2px dashed rgba(255, 255, 255, 0.05);
+  border-top: 2px solid rgba(255, 255, 255, 0.12); /* وميض أبيض خفيف متناسق */
+  border-radius: 40% 60% 70% 30% / 45% 50% 60% 55%;
+  animation: rotateGeometric 14s linear infinite;
+}
+
+/* الشكل الهندسي الثاني: يدور عكس الاتجاه ليعطي عمق هندسي معقد */
+.shape-2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 350px;
+  margin-top: -175px;
+  margin-left: -175px;
+  border: 1px double rgba(255, 255, 255, 0.03);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  animation: rotateGeometricInverse 22s linear infinite;
+}
+
+/* حركة الدوران والنبض الهادئة المناسبة لشاشات الجوال 120Hz */
+@keyframes rotateGeometric {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.03);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes rotateGeometricInverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }

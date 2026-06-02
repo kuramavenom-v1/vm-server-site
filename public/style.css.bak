@@ -1,22 +1,31 @@
-body {
+Body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #0f0f0f;
   color: #ffffff;
+  /* تضمن عدم وجود أي حركة أو تمرير أفقي غريب على الجوال */
+  overflow-x: hidden; 
+  width: 100%;
 }
 
 h1 {
   text-align: center;
   margin-top: 20px;
+  font-size: 1.8rem; /* تصغير الخط قليلاً ليناسب الشاشات الصغيرة */
+  padding: 0 10px;
 }
 
 .card {
   background: #1a1a1a;
   padding: 20px;
   margin: 20px auto;
-  width: 300px;
+  /* التعديل الجوهري هنا لجعل الكارد مرن ومناسب للجوال */
+  width: 90%; 
+  max-width: 300px; 
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(255,255,255,0.05);
+  /* لمنع البادنج من زيادة حجم الكارد واختراق أبعاد الشاشة */
+  box-sizing: border-box; 
 }
 
 input, select {
@@ -27,6 +36,7 @@ input, select {
   border-radius: 8px;
   background: #111;
   color: #fff;
+  box-sizing: border-box; /* لضمان عدم خروج المدخلات عن حدود الكارد */
 }
 
 button {
@@ -38,6 +48,7 @@ button {
   background: #ffffff;
   color: #000;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 button:hover {
