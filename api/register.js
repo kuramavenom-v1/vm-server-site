@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
   const { name, age, city, psn, image_url } = req.body;
 
-  if (!name) {
+  if (!name || !age || !city) {
     return res.status(400).json({
       success: false,
       error: "Missing data"

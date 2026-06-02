@@ -1,7 +1,7 @@
 console.log("SCRIPT LOADED");
 
 /* =========================
-   CREATE USER (REGISTER)
+   REGISTER
 ========================= */
 async function createIdentity() {
 
@@ -35,7 +35,7 @@ async function createIdentity() {
 
     const data = await res.json();
 
-    console.log("REGISTER RESPONSE:", data);
+    console.log("REGISTER:", data);
 
     if (!data.success) {
       alert("فشل إنشاء الهوية");
@@ -44,15 +44,13 @@ async function createIdentity() {
 
     const user = data.user;
 
-    // 🔥 تخزين ID فقط
-    localStorage.setItem("user_id", user.id);
+    localStorage.setItem("vm_user_id", user.id);
 
-    // تحويل للداشبورد
     location.href = "/dashboard.html?id=" + user.id;
 
   } catch (err) {
     console.error(err);
-    alert("فشل الاتصال بالـ API");
+    alert("فشل الاتصال");
   }
 }
 
@@ -76,14 +74,12 @@ async function login() {
 
     const data = await res.json();
 
-    console.log("LOGIN RESPONSE:", data);
-
     if (!data.success) {
       alert("الهوية غير موجودة");
       return;
     }
 
-    localStorage.setItem("user_id", id);
+    localStorage.setItem("vm_user_id", id);
 
     location.href = "/dashboard.html?id=" + id;
 
@@ -95,7 +91,7 @@ async function login() {
 
 
 /* =========================
-   LOAD DASHBOARD
+   DASHBOARD LOAD
 ========================= */
 window.onload = async () => {
 
@@ -103,8 +99,9 @@ window.onload = async () => {
 
   if (!path.includes("dashboard")) return;
 
-  const id = new URLSearchParams(window.location.search).get("id")
-    || localStorage.getItem("user_id");
+  const id =
+    new URLSearchParams(window.location.search).get("id") ||
+    localStorage.getItem("vm_user_id");
 
   if (!id) return;
 
@@ -125,7 +122,8 @@ window.onload = async () => {
     const user = data.user;
 
     document.getElementById("cardName").innerText = user.name;
-    document.getElementById("cardId").innerText = "ID: " + user.id;
+    document.getElementById("cardId").innerText = user.id;
+    document.getElementById("cardAge").innerText = user.age;
     document.getElementById("cardCity").innerText = user.city;
     document.getElementById("cardPSN").innerText = user.psn;
     document.getElementById("cardImage").src = user.image_url;
@@ -137,7 +135,7 @@ window.onload = async () => {
 
 
 /* =========================
-   BASE64 IMAGE
+   BASE64
 ========================= */
 function toBase64(file) {
   return new Promise((resolve, reject) => {
