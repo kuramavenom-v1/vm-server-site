@@ -1,52 +1,55 @@
 import { createClient } from "@supabase/supabase-js";
 
-function generateId() {
-  const random5 = Math.floor(10000 + Math.random() * 90000);
-  return `388${random5}`;
-}
-
 export default async function handler(req, res) {
 
-  const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_ANON_KEY
-  );
+  try {
 
-  const { name, age, city, psn, image_url } = req.body;
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_ANON_KEY
+    );
 
-  if (!name || !age || !city) {
-    return res.status(400).json({
-      success: false,
-      error: "Missing data"
-    });
-  }
+    const { name, age, city, psn, image_url } = req.body;
 
-  const userId = generateId();
+    if (!name || !age || !city) {
+      return res.status(400).json({
+        success: false,
+        error: "Missing fields"
+      });
+    }
 
-  const { data, error } = await supabase
-    .from("players")
-    .insert([
-      {
-        id: userId,
+    // session id عشوائي
+    const session_id = crypto.randomUUID();
+
+    const { data, error } = await supabase
+      .from("players")
+      .insert([{
         name,
         age,
         city,
         psn,
-        image_url
-      }
-    ])
-    .select()
-    .single();
+        image_url,
+        session_id
+      }])
+      .select()
+      .single();
 
-  if (error) {
+    if (error) {
+      return res.status(500).json({
+        success: false,
+        error: error.message
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      user: data
+    });
+
+  } catch (err) {
     return res.status(500).json({
       success: false,
-      error: error.message
+      error: err.message
     });
   }
-
-  return res.status(200).json({
-    success: true,
-    user: data
-  });
 }
