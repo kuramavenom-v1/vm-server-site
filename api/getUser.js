@@ -1,17 +1,18 @@
 import { createClient } from "@supabase/supabase-js";
 
 export default async function handler(req, res) {
+
   const supabase = createClient(
     process.env.SUPABASE_URL,
     process.env.SUPABASE_ANON_KEY
   );
 
-  const { id, name } = req.body;
+  const { id } = req.body;
 
-  if (!id || !name) {
+  if (!id) {
     return res.status(400).json({
       success: false,
-      error: "Missing id or name"
+      error: "Missing ID"
     });
   }
 
@@ -19,7 +20,6 @@ export default async function handler(req, res) {
     .from("players")
     .select("*")
     .eq("id", id)
-    .eq("name", name)
     .single();
 
   if (error) {
