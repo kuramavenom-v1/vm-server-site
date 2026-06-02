@@ -89,57 +89,128 @@ button:hover {
 /* overlay */
 .id-card {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  background: rgba(10,10,15,0.75);
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0,0.6);
-  z-index: 999;
 }
 
-/* إخفاء */
 .hidden {
   display: none;
 }
 
-/* البطاقة */
 .card-inner {
-  width: 320px;
-  height: 200px;
-  position: relative;
+  width: 360px;
+  height: 220px;
   transform-style: preserve-3d;
-  transition: transform 1s;
+  transition: 1s;
+  position: relative;
 }
 
-/* الوجهين */
-.card-front, .card-back {
+/* ===== البطاقة الأمامية ===== */
+
+.card-front {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 15px;
+  border-radius: 14px;
   backface-visibility: hidden;
+  background: linear-gradient(135deg, #f4f6f8, #dfe6ec);
+  color: #111;
+  padding: 14px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+/* هولوغرام خفيف */
+.card-front::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(0,0,0,0.05), transparent);
+  transform: rotate(25deg);
+  top: -50%;
+  left: -50%;
+}
+
+/* الهيدر */
+.id-header {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* الجسم */
+.id-body {
+  display: flex;
+  margin-top: 12px;
+  gap: 12px;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 2px solid #999;
+}
+
+.info h2 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.info p {
+  font-size: 12px;
+  margin: 2px 0;
+  color: #333;
+}
+
+/* الفوتر */
+.id-footer {
+  position: absolute;
+  bottom: 10px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  color: white;
-  background: #14141a;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.signature {
+  font-size: 10px;
+  font-weight: bold;
+  color: #444;
+}
+
+.qr {
+  width: 40px;
+  height: 40px;
+  background: repeating-linear-gradient(
+    45deg,
+    #000,
+    #000 2px,
+    #444 2px,
+    #444 4px
+  );
+  border-radius: 4px;
 }
 
 /* الخلف */
 .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #0e0f14;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 14px;
   transform: rotateY(180deg);
-}
-
-/* الصورة */
-.card-front img {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-  object-fit: cover;
-}
+  backface-visibility: hidden;
+} 
