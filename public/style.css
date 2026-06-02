@@ -1,75 +1,71 @@
-body{
-margin:0;
-font-family:Arial;
-background:#0b0b0f;
-color:white;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.app, .dashboard{
-display:flex;
-flex-direction:column;
-align-items:center;
-padding:20px;
+h1 {
+  margin: 20px 0;
+  color: #38bdf8;
 }
 
-.card{
-background:#1a1a22;
-padding:20px;
-border-radius:15px;
-width:300px;
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  width: 350px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  margin-bottom: 20px;
 }
 
-input, select{
-width:100%;
-margin:8px 0;
-padding:10px;
-border-radius:8px;
-border:none;
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #0f172a;
+  color: white;
 }
 
-button{
-width:100%;
-padding:10px;
-background:#00e676;
-border:none;
-cursor:pointer;
-margin-top:10px;
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #38bdf8;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.profile-card{
-background:#1a1a22;
-padding:20px;
-border-radius:15px;
-text-align:center;
+button:hover {
+  background: #0ea5e9;
 }
 
-.profile-card img{
-width:80px;
-height:80px;
-border-radius:10px;
+#idCard {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
-.stats{
-margin-top:15px;
+#cardImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 2px solid #38bdf8;
 }
 
-.dot{
-display:inline-block;
-width:10px;
-height:10px;
-background:lime;
-border-radius:50%;
-box-shadow:0 0 10px lime;
-}
-
-.box{
-background:#1a1a22;
-padding:15px;
-margin-top:10px;
-border-radius:10px;
-width:300px;
-}
-
-.links button{
-margin:5px;
+.hidden {
+  display: none;
 }
