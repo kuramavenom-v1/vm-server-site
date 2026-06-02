@@ -1,0 +1,12 @@
+{
+  "name": "vm-server-site",
+  "version": "1.0.0",
+  "description": "VM Roleplay Identity System",
+  "main": "index.js",
+  "scripts": {
+    "start": "node api/index.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  }
+}

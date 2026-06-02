@@ -1,0 +1,26 @@
+<form id="register-form" class="auth-form">
+    <h2>إنشاء الهوية</h2>
+    <input type="text" id="reg-name" placeholder="الاسم الكامل" required>
+    <input type="number" id="reg-age" placeholder="العمر" required>
+    
+    <select id="reg-city" required>
+        <option value="" disabled selected>اختر مدينة النشأة</option>
+        <option value="Los Santos">Los Santos (لوس سانتوس)</option>
+        <option value="Paleto Bay">Paleto Bay (باليتو باي)</option>
+        <option value="Sandy Shores">Sandy Shores (ساندي شورز)</option>
+        <option value="Grapeseed">Grapeseed (غرايبسيد)</option>
+        <option value="Harmony">Harmony (هارموني)</option>
+        <option value="Chumash">Chumash (تشوماش)</option>
+        <option value="Banham Canyon">Banham Canyon</option>
+        <option value="Tongva Hills">Tongva Hills</option>
+        <option value="North Chumash">North Chumash</option>
+    </select>
+
+    <div style="display: flex; align-items: center; background: rgba(0,0,0,0.3); border: 1px solid #444; border-radius: 8px; padding: 0 10px; margin: 10px 0;">
+        <span style="color: var(--neon); font-weight: bold;">388</span>
+        <input type="text" id="reg-id" placeholder="أدخل 5 أرقام (غير متتالية)" maxlength="5" style="border:none; margin:0;" required>
+    </div>
+
+    <input type="text" id="reg-sony" placeholder="يوزر السوني (PSN ID)" required>
+    <button type="submit" class="submit-btn">إصدار الهوية</button>
+</form>
