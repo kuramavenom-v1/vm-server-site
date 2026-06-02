@@ -1,57 +1,43 @@
-/* إعدادات الشاشة الأساسية والتوسيط الموزون للجوال */
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* يمنع التمرير والحركة العشوائية تماماً على الجوال */
-  background: #0f0f0f; /* لون الخلفية الأصلي المعين من قبلك */
+  overflow: hidden; /* نتركها لكن بنضبط الطبقات */
+  background: #0f0f0f;
   font-family: Arial, sans-serif;
-  color: #ffffff;
-}
-
-/* حاوية التوسيط المطلق للكارد ليكون في السنتر تماماً */
-.center-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 10; /* لضمان ظهور الكارد والأزرار فوق المؤثرات الخلفية */
-}
-
-h1 {
-  text-align: center;
-  margin: 0 0 15px 0; 
-  font-size: 1.8rem; 
-  padding: 0 10px;
-}
-
-.card {
-  background: #1a1a1a; /* لون الكارد الأصلي الخاص بك */
-  padding: 20px;
-  width: 90%; 
-  max-width: 300px; 
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(255,255,255,0.05);
-  box-sizing: border-box; 
-  
-  /* ترتيب داخلي مرن للأزرار لتطابق الأبعاد */
-  display: flex;
-  flex-direction: column;
-  gap: 8px; 
-}
-
-input, select {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #333;
-  border-radius: 8px;
-  background: #111;
   color: #fff;
-  box-sizing: border-box; 
+  position: relative;
+}
+
+/* مهم جداً */
+.grid, .shapes {
+  pointer-events: none;
+}
+
+/* الخلفية */
+.grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.shapes {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+
+/* الكرت */
+.center-container {
+  position: relative;
+  z-index: 10;
+}
+
+/* الكارد نفسه */
+.card {
+  position: relative;
+  z-index: 11;
 }
 
 button {
@@ -75,17 +61,16 @@ button:hover {
 }
 
 /* =================================================== */
-/*        تأثيرات الأشكال البرمجية والشبكة الهندسية       */
+/* تأثيرات الأشكال المتنوعة والشبكة الهندسية       */
 /* =================================================== */
 
-/* خطوط شبكية متحركة عمودياً باللون الأزرق البرمجي الخفيف */
 .grid {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(0, 85, 255, 0.05) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(0, 85, 255, 0.05) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(0, 85, 255, 0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0, 85, 255, 0.04) 1px, transparent 1px);
   background-size: 40px 40px;
-  animation: moveGrid 6s linear infinite;
+  animation: moveGrid 8s linear infinite;
   z-index: 1;
 }
 
@@ -94,30 +79,173 @@ button:hover {
   to { transform: translateY(40px); }
 }
 
-/* الأشكال الهندسية المعقدة الموزعة والمتحركة تلقائياً خلف الكارد */
+/* القاعدة الأساسية لكل الأشكال الخلفية */
 .shapes span {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #0055ff;
-  animation: rotateGeometric 6s linear infinite;
-  opacity: 0.4;
   z-index: 2;
+  opacity: 0.35;
 }
 
-/* توزيع الأشكال الهندسية في زوايا مختلفة ومريحة للعين على الجوال */
-.shapes span:nth-child(1) { top: 12%; left: 15%; }
-.shapes span:nth-child(2) { top: 25%; left: 80%; border-radius: 50%; } /* شكل دائري */
-.shapes span:nth-child(3) { top: 75%; left: 45%; transform: rotate(45deg); }
-.shapes span:nth-child(4) { top: 85%; left: 15%; border-radius: 4px; } /* مربع ذو حواف */
-.shapes span:nth-child(5) { top: 45%; left: 85%; }
+/* --- تصميم وتوزيع الأشكال المختلفة --- */
 
-/* حركة الدوران والنمو المعقدة المطابقة للبروتوكول الخاص بك */
-@keyframes rotateGeometric {
-  from { 
-    transform: rotate(0deg) scale(1); 
-  }
-  to { 
-    transform: rotate(360deg) scale(1.4); 
-  }
+/* 1. مربع كلاسيكي يدور مع عقارب الساعة */
+.shapes .square-1 {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #0055ff;
+  top: 10%; left: 15%;
+  animation: rotateClockwise 7s linear infinite;
+}
+
+/* 2. دائرة تتسع وتتقلص (تنبض) */
+.shapes .circle-1 {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #0055ff;
+  border-radius: 50%;
+  top: 22%; left: 78%;
+  animation: pulseShape 4s ease-in-out infinite alternate;
+}
+
+/* 3. شكل معين (Diamond) يدور بسرعة مختلفة */
+.shapes .diamond-1 {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #0055ff;
+  top: 75%; left: 18%;
+  transform: rotate(45deg);
+  animation: rotateCounterClockwise 9s linear infinite;
+}
+
+/* 4. كود مخصص لصناعة مثلث برمي متوهج خفيف */
+.shapes .triangle-1 {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 18px solid rgba(0, 85, 255, 0.7);
+  top: 40%; left: 12%;
+  animation: rotateClockwise 12s linear infinite;
+}
+
+/* 5. شكل سداسي/مربع مائل ذو حواف دائرية */
+.shapes .hexagon-1 {
+  width: 20px;
+  height: 20px;
+  border: 2px dashed #0055ff;
+  border-radius: 4px;
+  top: 82%; left: 75%;
+  animation: rotateClockwise 5s linear infinite;
+}
+
+/* 6. مربع صغير مصمت (Solid) يختفي ويظهر */
+.shapes .square-2 {
+  width: 8px;
+  height: 8px;
+  background-color: #0055ff;
+  top: 55%; left: 88%;
+  animation: blinkShape 3s infinite;
+}
+
+/* 7. حلقة دائرية مزدوجة الخطوط */
+.shapes .circle-2 {
+  width: 30px;
+  height: 30px;
+  border: 1px double #0055ff;
+  border-radius: 50%;
+  top: 8%; left: 48%;
+  animation: pulseShape 5s ease-in-out infinite alternate;
+}
+
+/* 8. معين آخر في زاوية مغايرة يدور عكس الاتجاه */
+.shapes .diamond-2 {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #0055ff;
+  top: 32%; left: 42%;
+  animation: rotateCounterClockwise 6s linear infinite;
+}
+
+/* 9. مثلث مقلوب */
+.shapes .triangle-2 {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 15px solid rgba(0, 85, 255, 0.5);
+  top: 68%; left: 48%;
+  animation: rotateCounterClockwise 10s linear infinite;
+}
+
+/* 10 و 11. أشكال متقاطعة خفيفة جداً (Crosses) لزيادة التعقيد */
+.shapes .cross-1 {
+  width: 15px;
+  height: 2px;
+  background: #0055ff;
+  top: 48%; left: 22%;
+  transform: rotate(45deg);
+}
+.shapes .cross-1::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 2px;
+  background: #0055ff;
+  transform: rotate(90deg);
+}
+
+.shapes .cross-2 {
+  width: 15px;
+  height: 2px;
+  background: #0055ff;
+  top: 88%; left: 42%;
+  transform: rotate(120deg);
+}
+.shapes .cross-2::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 2px;
+  background: #0055ff;
+  transform: rotate(90deg);
+}
+
+/* 12. حلقة متقطعة تدور ببطء شديد */
+.shapes .ring-1 {
+  width: 40px;
+  height: 40px;
+  border: 2px dashed rgba(0, 85, 255, 0.3);
+  border-radius: 50%;
+  top: 45%; left: 68%;
+  animation: rotateClockwise 25s linear infinite;
+}
+
+/* =================================================== */
+/* الأنماط الحركية (Animations)          */
+/* =================================================== */
+
+/* دوران مع عقارب الساعة مع تكبير خفيف */
+@keyframes rotateClockwise {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* دوران عكس عقارب الساعة مع تكبير خفيف */
+@keyframes rotateCounterClockwise {
+  0% { transform: rotate(360deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+/* نبض الحجم (الدوائر) */
+@keyframes pulseShape {
+  0% { transform: scale(0.9); opacity: 0.2; }
+  100% { transform: scale(1.3); opacity: 0.5; }
+}
+
+/* الوميض والاختفاء التدريجي */
+@keyframes blinkShape {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.6; }
 }
