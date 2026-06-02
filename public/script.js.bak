@@ -19,8 +19,13 @@ async function createIdentity() {
 
   let image_base64 = "";
 
-  if (file) {
-    image_base64 = await toBase64(file);
+  try {
+    if (file) {
+      image_base64 = await toBase64(file);
+    }
+  } catch (e) {
+    console.log("image error:", e);
+    image_base64 = "";
   }
 
   try {
@@ -45,20 +50,17 @@ async function createIdentity() {
 
       const user = data.data[0];
 
-      // تعبئة البطاقة
       document.getElementById("cardName").innerText = user.name;
       document.getElementById("cardId").innerText = "ID: " + user.identity_number;
       document.getElementById("cardCity").innerText = user.city;
       document.getElementById("cardPSN").innerText = user.psn;
       document.getElementById("cardImage").src = user.image_url;
 
-      // إظهار البطاقة
       const card = document.getElementById("idCard");
       const inner = document.querySelector(".card-inner");
 
       card.classList.remove("hidden");
 
-      // يبدأ من الخلف
       inner.style.transform = "rotateY(180deg)";
 
       setTimeout(() => {
