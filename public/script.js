@@ -1,129 +1,92 @@
-console.log("SCRIPT LOADED");
+console.log("SYSTEM READY");
 
-function toBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-
-    reader.readAsDataURL(file);
-  });
-}
-
+// --------------------
+// إنشاء هوية
+// --------------------
 async function createIdentity() {
 
-  console.log("BUTTON CLICKED");
+  const name = document.getElementById("name").value;
+  const age = document.getElementById("age").value;
+  const city = document.getElementById("city").value;
+  const psn = document.getElementById("psn").value;
+  const imageInput = document.getElementById("image");
 
-  try {
+  let image_base64 = "";
 
-    const name = document.getElementById("name").value;
-    const age = document.getElementById("age").value;
-    const city = document.getElementById("city").value;
-    const psn = document.getElementById("psn").value;
-    const imageInput = document.getElementById("image");
-
-    let image_base64 = "";
-
-    if (imageInput.files.length > 0) {
-      image_base64 = await toBase64(imageInput.files[0]);
-    }
-
-    const res = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name,
-        age,
-        city,
-        psn,
-        image_url: image_base64
-      })
-    });
-
-    const data = await res.json();
-
-    console.log("REGISTER RESPONSE:", data);
-
-    if (!data.success) {
-      alert("حدث خطأ أثناء التسجيل");
-      return;
-    }
-
-    const user = data.user;
-
-    // ✅ نحفظ session_id لأنه الموجود فعليًا
-    localStorage.setItem(
-      "session_id",
-      user.session_id
-    );
-
-    showUser(user);
-
-  } catch (err) {
-
-    console.error(err);
-    alert("فشل الاتصال بالـ API");
+  if (imageInput.files.length > 0) {
+    image_base64 = await toBase64(imageInput.files[0]);
   }
-}
 
-window.onload = async () => {
+  const res = await fetch("/api/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name,
+      age,
+      city,
+      psn,
+      image_url: image_base64
+    })
+  });
 
-  const session_id =
-    localStorage.getItem("session_id");
+  const data = await res.json();
 
-  console.log("SESSION:", session_id);
-
-  if (!session_id) {
+  if (!data.success) {
+    alert("فشل إنشاء الهوية");
     return;
   }
 
-  try {
+  alert("تم إنشاء الهوية بنجاح\nID: " + data.user.id);
 
-    const res = await fetch("/api/getUser", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        session_id
-      })
-    });
+  showUser(data.user);
+}
 
-    const data = await res.json();
+// --------------------
+// تسجيل الدخول
+// --------------------
+async function login() {
 
-    console.log("GET USER:", data);
+  const name = document.getElementById("loginName").value;
+  const id = document.getElementById("loginId").value;
 
-    if (!data.success) {
-      return;
-    }
+  const res = await fetch("/api/getUser", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id, name })
+  });
 
-    showUser(data.user);
+  const data = await res.json();
 
-  } catch (err) {
-
-    console.error(err);
+  if (!data.success) {
+    alert("بيانات غير صحيحة");
+    return;
   }
-};
 
+  showUser(data.user);
+}
+
+// --------------------
+// عرض الهوية
+// --------------------
 function showUser(user) {
 
-  document.getElementById("cardName").innerText =
-    user.name || "";
-
-  document.getElementById("cardId").innerText =
-    "SESSION: " + (user.session_id || "");
-
-  document.getElementById("cardCity").innerText =
-    user.city || "";
-
-  document.getElementById("cardPSN").innerText =
-    user.psn || "";
-
-  document.getElementById("cardImage").src =
-    user.image_url || "";
+  document.getElementById("cardName").innerText = user.name;
+  document.getElementById("cardId").innerText = "ID: " + user.id;
+  document.getElementById("cardCity").innerText = user.city;
+  document.getElementById("cardPSN").innerText = user.psn;
+  document.getElementById("cardImage").src = user.image_url;
 
   document.getElementById("idCard").classList.remove("hidden");
+}
+
+// --------------------
+// تحويل صورة
+// --------------------
+function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
 }
