@@ -2,7 +2,7 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>VM Roleplay</title>
+<title>VM RP</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -10,43 +10,17 @@
 
 <h1>VM Roleplay</h1>
 
-<!-- تسجيل دخول -->
 <div class="card">
-  <h3>تسجيل دخول</h3>
 
-  <input id="loginName" placeholder="الاسم">
-  <input id="loginId" placeholder="رقم الهوية">
+  <button onclick="location.href='login.html'">
+    تسجيل الدخول
+  </button>
 
-  <button onclick="login()">دخول</button>
+  <button onclick="location.href='register.html'">
+    إنشاء هوية جديدة
+  </button>
 
-  <hr>
-
-  <h3>إنشاء هوية جديدة</h3>
-
-  <input id="name" placeholder="الاسم">
-  <input id="age" placeholder="العمر">
-
-  <select id="city">
-    <option>Los Santos</option>
-    <option>Paleto Bay</option>
-    <option>Sandy Shores</option>
-  </select>
-
-  <input id="psn" placeholder="PSN">
-  <input type="file" id="image">
-
-  <button onclick="createIdentity()">إنشاء الهوية</button>
 </div>
 
-<!-- بطاقة الهوية -->
-<div id="idCard" class="hidden">
-  <img id="cardImage">
-  <h2 id="cardName"></h2>
-  <p id="cardId"></p>
-  <p id="cardCity"></p>
-  <p id="cardPSN"></p>
-</div>
-
-<script src="script.js"></script>
 </body>
 </html>

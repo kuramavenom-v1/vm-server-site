@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>إنشاء هوية</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>إنشاء هوية جديدة</h1>
+
+<div class="card">
+
+  <input id="name" placeholder="الاسم">
+  <input id="age" placeholder="العمر">
+
+  <select id="city">
+    <option>Los Santos</option>
+    <option>Sandy Shores</option>
+    <option>Paleto Bay</option>
+  </select>
+
+  <input id="psn" placeholder="PSN">
+  <input type="file" id="image">
+
+  <button onclick="createIdentity()">
+    إنشاء
+  </button>
+
+  <button onclick="location.href='index.html'">
+    رجوع
+  </button>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
