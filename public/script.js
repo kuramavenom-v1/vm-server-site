@@ -14,19 +14,29 @@ async function createIdentity() {
   const psn = document.getElementById("psn").value;
   const file = document.getElementById("image").files[0];
 
-  let image = "";
-  if (file) image = await toBase64(file);
+  let image_url = "";
+  if (file) image_url = await toBase64(file);
 
-  const user = {
-    name,
-    age,
-    city,
-    psn,
-    image,
-    id: "388" + Math.floor(Math.random() * 99999)
-  };
+  const res = await fetch("/api/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name,
+      age,
+      city,
+      psn,
+      image_url
+    })
+  });
 
-  localStorage.setItem("vm_user", JSON.stringify(user));
+  const data = await res.json();
+
+  if (!data.success) {
+    alert(data.error);
+    return;
+  }
+
+  localStorage.setItem("vm_user", JSON.stringify(data.data[0]));
 
   window.location.href = "dashboard.html";
 }

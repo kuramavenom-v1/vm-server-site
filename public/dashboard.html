@@ -10,30 +10,30 @@
 <div class="dashboard">
 
   <!-- الهوية -->
-  <div class="profile-card">
-    <img id="avatar">
+  <div class="card">
     <h2 id="name"></h2>
     <p id="id"></p>
     <p id="city"></p>
   </div>
 
   <!-- إحصائيات -->
-  <div class="stats">
-    <div>👥 عدد اللاعبين: 128 <span class="dot"></span></div>
-    <div>⭐ تقييم السيرفر: 4.8</div>
+  <div class="card">
+    <h3>📊 السيرفر</h3>
+    <p>👥 عدد اللاعبين: <span id="count">...</span></p>
+    <p>⭐ التقييم: 4.8</p>
+    <p>🟢 Online</p>
   </div>
 
-  <!-- القوانين -->
-  <div class="box">
-    <h3>قوانين السيرفر</h3>
-    <p>احترام الجميع - عدم الغش - الالتزام بال ROL</p>
+  <!-- قوانين -->
+  <div class="card">
+    <h3>📜 القوانين</h3>
+    <p>احترام اللاعبين - ممنوع الغش - الالتزام بـ RP</p>
   </div>
 
-  <!-- الروابط -->
-  <div class="links">
-    <button>Discord</button>
-    <button>Store</button>
-    <button>Bot</button>
+  <!-- اللاعبين -->
+  <div class="card">
+    <h3>👥 اللاعبين</h3>
+    <div id="players"></div>
   </div>
 
 </div>
@@ -42,9 +42,25 @@
 const user = JSON.parse(localStorage.getItem("vm_user"));
 
 document.getElementById("name").innerText = user.name;
-document.getElementById("id").innerText = user.id;
+document.getElementById("id").innerText = user.identity_number;
 document.getElementById("city").innerText = user.city;
-document.getElementById("avatar").src = user.image;
+
+async function loadPlayers() {
+  const res = await fetch("/api/users");
+  const data = await res.json();
+
+  document.getElementById("count").innerText = data.data.length;
+
+  document.getElementById("players").innerHTML =
+    data.data.map(p => `
+      <div style="padding:8px;border-bottom:1px solid #333">
+        <b>${p.name}</b> - ${p.city}<br>
+        <small>${p.identity_number}</small>
+      </div>
+    `).join("");
+}
+
+loadPlayers();
 </script>
 
 </body>
