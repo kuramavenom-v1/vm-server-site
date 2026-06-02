@@ -1,30 +1,76 @@
+function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+  });
+}
+
 async function createIdentity() {
+
   console.log("بدأ التنفيذ");
 
+  const name = document.getElementById("name").value;
+  const age = document.getElementById("age").value;
+  const city = document.getElementById("city").value;
+  const psn = document.getElementById("psn").value;
+  const file = document.getElementById("image").files[0];
+
+  let image_base64 = "";
+
+  if (file) {
+    image_base64 = await toBase64(file);
+  }
+
   try {
+
     const res = await fetch("/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        name: "test",
-        age: "20",
-        city: "test",
-        psn: "test",
-        image_url: ""
+        name,
+        age,
+        city,
+        psn,
+        image_url: image_base64
       })
     });
 
-    console.log("STATUS:", res.status);
-
     const data = await res.json();
-    console.log("DATA:", data);
 
-    alert("تم الإرسال بنجاح");
+    if (data.success) {
+
+      const user = data.data[0];
+
+      // تعبئة البطاقة
+      document.getElementById("cardName").innerText = user.name;
+      document.getElementById("cardId").innerText = "ID: " + user.identity_number;
+      document.getElementById("cardCity").innerText = user.city;
+      document.getElementById("cardPSN").innerText = user.psn;
+      document.getElementById("cardImage").src = user.image_url;
+
+      // إظهار البطاقة
+      const card = document.getElementById("idCard");
+      const inner = document.querySelector(".card-inner");
+
+      card.classList.remove("hidden");
+
+      // يبدأ من الخلف
+      inner.style.transform = "rotateY(180deg)";
+
+      setTimeout(() => {
+        inner.style.transform = "rotateY(0deg)";
+      }, 300);
+
+    } else {
+      alert("حدث خطأ");
+    }
 
   } catch (err) {
-    console.log("ERROR:", err);
+    console.log(err);
     alert("فشل الاتصال بالـ API");
   }
 }

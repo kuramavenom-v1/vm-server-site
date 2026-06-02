@@ -5,33 +5,34 @@
   font-family: Arial, sans-serif;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* 🔥 يمنع التمرير نهائيًا */
+body {
   background: #0b0b0f;
   color: white;
+  height: 100vh;
+  overflow: hidden; /* يمنع التمرير = شكل تطبيق */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* تطبيق ثابت */
+/* شاشة التطبيق */
 .app {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-/* عنوان */
+/* العنوان */
 h1 {
-  font-size: 28px;
+  font-size: 32px;
   margin-bottom: 20px;
   color: #00e676;
-  text-align: center;
 }
 
-/* كرت تسجيل الدخول */
+/* الكرت الرئيسي */
 .card {
   width: 380px;
   background: #14141a;
@@ -40,7 +41,7 @@ h1 {
   box-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
 
-/* مدخلات */
+/* مدخلات احترافية */
 input, select {
   width: 100%;
   padding: 14px;
@@ -50,10 +51,12 @@ input, select {
   background: #0f0f15;
   color: white;
   outline: none;
+  transition: 0.2s;
 }
 
 input:focus, select:focus {
   border-color: #00e676;
+  box-shadow: 0 0 10px rgba(0,230,118,0.3);
 }
 
 /* زر */
@@ -69,8 +72,8 @@ button {
   margin-top: 10px;
 }
 
-button:active {
-  transform: scale(0.98);
+button:hover {
+  transform: scale(1.02);
 }
 
 /* 📱 الجوال */
@@ -80,6 +83,63 @@ button:active {
   }
 
   h1 {
-    font-size: 22px;
+    font-size: 24px;
   }
+}
+/* overlay */
+.id-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 999;
+}
+
+/* إخفاء */
+.hidden {
+  display: none;
+}
+
+/* البطاقة */
+.card-inner {
+  width: 320px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+/* الوجهين */
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #14141a;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+/* الخلف */
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* الصورة */
+.card-front img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  object-fit: cover;
 }

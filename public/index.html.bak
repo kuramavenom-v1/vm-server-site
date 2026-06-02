@@ -29,12 +29,29 @@
     </select>
 
     <input id="psn" placeholder="PSN">
-    <input id="image" placeholder="رابط الصورة">
+    <input type="file" id="image" accept="image/*">
 
     <button onclick="createIdentity()">إنشاء الهوية</button>
 
   </div>
 
+</div>
+<div id="idCard" class="id-card hidden">
+  <div class="card-inner">
+    
+    <div class="card-front">
+      <img id="cardImage" />
+      <h2 id="cardName"></h2>
+      <p id="cardId"></p>
+      <p id="cardCity"></p>
+      <p id="cardPSN"></p>
+    </div>
+
+    <div class="card-back">
+      <h3>VM ID CARD</h3>
+    </div>
+
+  </div>
 </div>
 <script src="script.js"></script>
 </body>
