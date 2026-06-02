@@ -12,15 +12,59 @@
 
 <div class="card">
 
-  <button onclick="location.href='login.html'">
-    تسجيل الدخول
-  </button>
-
-  <button onclick="location.href='register.html'">
+  <button onclick="showRegister()">
     إنشاء هوية جديدة
   </button>
 
+  <button onclick="showLogin()">
+    تسجيل الدخول
+  </button>
+
 </div>
+
+<!-- تسجيل الدخول -->
+<div id="loginBox" class="card hidden">
+
+  <h3>تسجيل الدخول</h3>
+
+  <input id="loginId" placeholder="رقم الهوية">
+
+  <button onclick="login()">دخول</button>
+
+</div>
+
+<!-- إنشاء الهوية -->
+<div id="registerBox" class="card hidden">
+
+  <h3>إنشاء هوية</h3>
+
+  <input id="name" placeholder="الاسم">
+  <input id="age" placeholder="العمر">
+
+  <input id="city" placeholder="المدينة">
+  <input id="psn" placeholder="PSN">
+
+  <input type="file" id="image">
+
+  <button onclick="createIdentity()">
+    إنشاء الهوية
+  </button>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+function showLogin() {
+  document.getElementById("loginBox").classList.remove("hidden");
+  document.getElementById("registerBox").classList.add("hidden");
+}
+
+function showRegister() {
+  document.getElementById("registerBox").classList.remove("hidden");
+  document.getElementById("loginBox").classList.add("hidden");
+}
+</script>
 
 </body>
 </html>
