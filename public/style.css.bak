@@ -1,62 +1,72 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
 
 html, body {
   width: 100%;
   height: 100%;
-  overflow: hidden; /* منع التمرير */
-  background: white; /* خلفية بيضاء */
+  overflow: hidden; /* 🔥 يمنع التمرير نهائيًا */
+  background: #0b0b0f;
+  color: white;
 }
 
-/* تطبيق في منتصف الشاشة */
+/* تطبيق ثابت */
 .app {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-/* العنوان */
+/* عنوان */
 h1 {
-  font-size: 22px;
-  margin-bottom: 15px;
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #00e676;
   text-align: center;
-  color: black;
 }
 
-/* مربع تسجيل الدخول */
+/* كرت تسجيل الدخول */
 .card {
-  width: 320px; /* حجم صغير مناسب للجوال */
-  background: white;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  width: 380px;
+  background: #14141a;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
 
-/* المدخلات */
+/* مدخلات */
 input, select {
   width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid #2a2a35;
+  border-radius: 10px;
+  background: #0f0f15;
+  color: white;
   outline: none;
+}
+
+input:focus, select:focus {
+  border-color: #00e676;
 }
 
 /* زر */
 button {
   width: 100%;
-  padding: 10px;
-  background: black;
-  color: white;
+  padding: 14px;
+  background: linear-gradient(90deg, #00c853, #00e676);
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  color: black;
+  font-weight: bold;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 button:active {
@@ -67,5 +77,9 @@ button:active {
 @media (max-width: 600px) {
   .card {
     width: 90%;
+  }
+
+  h1 {
+    font-size: 22px;
   }
 }
