@@ -1,108 +1,86 @@
-console.log("VM SCRIPT LOADED");
+console.log("SCRIPT LOADED");
 
-// تحويل صورة
-function toBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-  });
-}
-
-// إنشاء حساب
 async function createIdentity() {
+  console.log("REGISTER CLICKED");
+
+  const name = document.getElementById("name").value;
+  const age = document.getElementById("age").value;
+  const city = document.getElementById("city").value;
+  const psn = document.getElementById("psn").value;
 
   try {
-
-    const name = document.getElementById("name").value;
-    const age = document.getElementById("age").value;
-    const city = document.getElementById("city").value;
-    const psn = document.getElementById("psn").value;
-    const file = document.getElementById("image").files[0];
-
-    let image_url = "";
-    if (file) image_url = await toBase64(file);
-
     const res = await fetch("/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, age, city, psn, image_url })
+      body: JSON.stringify({ name, age, city, psn })
     });
 
     const data = await res.json();
+    console.log("REGISTER RESPONSE:", data);
 
-    if (!data.success) return alert("فشل التسجيل");
+    if (!data.success) {
+      alert("فشل التسجيل");
+      return;
+    }
 
+    // حفظ ID الصح
     localStorage.setItem("session_id", data.user.session_id);
 
-    showUser(data.user);
+    window.location.href = "dashboard.html";
 
   } catch (err) {
-    console.error(err);
-    alert("API Error");
+    console.log(err);
+    alert("API error register");
   }
 }
 
-// تحميل المستخدم عند الدخول
-window.onload = async () => {
+async function loginUser() {
+  console.log("LOGIN CLICKED");
 
-  const session_id = localStorage.getItem("session_id");
-
-  if (!session_id) return;
+  const id = document.getElementById("login_id").value;
 
   try {
-
     const res = await fetch("/api/getUser", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id })
+      body: JSON.stringify({ session_id: id })
     });
 
     const data = await res.json();
 
-    if (data.success) {
-      showUser(data.user);
+    if (!data.success) {
+      alert("ID غير صحيح");
+      return;
     }
 
-  } catch (err) {
-    console.error(err);
-  }
+    localStorage.setItem("session_id", id);
+    window.location.href = "dashboard.html";
 
-  loadPlayersCount();
+  } catch (err) {
+    alert("API error login");
+  }
+}
+
+window.onload = async () => {
+  const id = localStorage.getItem("session_id");
+  if (!id) return;
+
+  const res = await fetch("/api/getUser", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ session_id: id })
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    showUser(data.user);
+  }
 };
 
-// عدد اللاعبين الحقيقي
-async function loadPlayersCount() {
-
-  try {
-
-    const res = await fetch("/api/users");
-    const data = await res.json();
-
-    if (data.success) {
-      document.getElementById("playerCount").innerText = data.count;
-    }
-
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-// عرض الهوية
 function showUser(user) {
-
   document.getElementById("cardName").innerText = user.name;
-  document.getElementById("cardId").innerText = "ID: " + user.session_id;
+  document.getElementById("cardId").innerText = user.session_id;
   document.getElementById("cardCity").innerText = user.city;
   document.getElementById("cardPSN").innerText = user.psn;
-  document.getElementById("cardImage").src = user.image_url;
-
-  document.getElementById("idCard").classList.remove("hidden");
-}
-
-// تسجيل خروج
-function logout() {
-  localStorage.removeItem("session_id");
-  location.reload();
 }

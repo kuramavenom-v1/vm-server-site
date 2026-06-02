@@ -1,11 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
 
-export const config = {
-  api: {
-    bodyParser: true,
-  },
-};
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ success: false });
@@ -21,7 +15,7 @@ export default async function handler(req, res) {
   if (!session_id) {
     return res.status(400).json({
       success: false,
-      error: "Missing session_id",
+      error: "session_id required"
     });
   }
 
@@ -31,15 +25,15 @@ export default async function handler(req, res) {
     .eq("session_id", session_id)
     .single();
 
-  if (error) {
+  if (error || !data) {
     return res.status(404).json({
       success: false,
-      error: "User not found",
+      error: "User not found"
     });
   }
 
   return res.status(200).json({
     success: true,
-    user: data,
+    user: data
   });
 }
