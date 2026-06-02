@@ -4,8 +4,8 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* يمنع التمرير والحركة الأفقية والعمودية تماماً على الجوال */
-  background: #0f0f0f; /* لون الخلفية الأصلي */
+  overflow: hidden; /* يمنع التمرير والحركة العشوائية تماماً على الجوال */
+  background: #0f0f0f; /* لون الخلفية الأصلي المعين من قبلك */
   font-family: Arial, sans-serif;
   color: #ffffff;
 }
@@ -18,18 +18,18 @@ html, body {
   width: 100%;
   height: 100%;
   position: relative;
-  z-index: 10; /* لضمان ظهور الكارد فوق الأشكال المتحركة */
+  z-index: 10; /* لضمان ظهور الكارد والأزرار فوق المؤثرات الخلفية */
 }
 
 h1 {
   text-align: center;
-  margin: 0 0 15px 0; /* تكييف الهوامش للتوسط داخل الكارد */
+  margin: 0 0 15px 0; 
   font-size: 1.8rem; 
   padding: 0 10px;
 }
 
 .card {
-  background: #1a1a1a; /* لون الكارد الأصلي */
+  background: #1a1a1a; /* لون الكارد الأصلي الخاص بك */
   padding: 20px;
   width: 90%; 
   max-width: 300px; 
@@ -74,80 +74,50 @@ button:hover {
   display: none;
 }
 
-/* --- نظام الخلفية الهندسية المتحركة المحيطة بالكارد --- */
+/* =================================================== */
+/*        تأثيرات الأشكال البرمجية والشبكة الهندسية       */
+/* =================================================== */
 
-.bg-wrapper {
+/* خطوط شبكية متحركة عمودياً باللون الأزرق البرمجي الخفيف */
+.grid {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  background-image: linear-gradient(rgba(0, 85, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0, 85, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: moveGrid 6s linear infinite;
   z-index: 1;
-  overflow: hidden;
 }
 
-/* شبكة رقمية خفيفة جداً متناسقة مع ألوانك */
-.matrix-grid {
+@keyframes moveGrid {
+  from { transform: translateY(0); }
+  to { transform: translateY(40px); }
+}
+
+/* الأشكال الهندسية المعقدة الموزعة والمتحركة تلقائياً خلف الكارد */
+.shapes span {
   position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  background-size: 30px 30px;
-  transform: rotate(15deg);
+  width: 20px;
+  height: 20px;
+  border: 2px solid #0055ff;
+  animation: rotateGeometric 6s linear infinite;
+  opacity: 0.4;
+  z-index: 2;
 }
 
-/* الشكل الهندسي الأول: حلقة برمجية دائرية تدور حول السنتر */
-.shape-1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 290px;
-  height: 290px;
-  margin-top: -145px;
-  margin-left: -145px;
-  border: 2px dashed rgba(255, 255, 255, 0.05);
-  border-top: 2px solid rgba(255, 255, 255, 0.12); /* وميض أبيض خفيف متناسق */
-  border-radius: 40% 60% 70% 30% / 45% 50% 60% 55%;
-  animation: rotateGeometric 14s linear infinite;
-}
+/* توزيع الأشكال الهندسية في زوايا مختلفة ومريحة للعين على الجوال */
+.shapes span:nth-child(1) { top: 12%; left: 15%; }
+.shapes span:nth-child(2) { top: 25%; left: 80%; border-radius: 50%; } /* شكل دائري */
+.shapes span:nth-child(3) { top: 75%; left: 45%; transform: rotate(45deg); }
+.shapes span:nth-child(4) { top: 85%; left: 15%; border-radius: 4px; } /* مربع ذو حواف */
+.shapes span:nth-child(5) { top: 45%; left: 85%; }
 
-/* الشكل الهندسي الثاني: يدور عكس الاتجاه ليعطي عمق هندسي معقد */
-.shape-2 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 350px;
-  height: 350px;
-  margin-top: -175px;
-  margin-left: -175px;
-  border: 1px double rgba(255, 255, 255, 0.03);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
-  border-radius: 50%;
-  animation: rotateGeometricInverse 22s linear infinite;
-}
-
-/* حركة الدوران والنبض الهادئة المناسبة لشاشات الجوال 120Hz */
+/* حركة الدوران والنمو المعقدة المطابقة للبروتوكول الخاص بك */
 @keyframes rotateGeometric {
-  0% {
-    transform: rotate(0deg) scale(1);
+  from { 
+    transform: rotate(0deg) scale(1); 
   }
-  50% {
-    transform: rotate(180deg) scale(1.03);
-  }
-  100% {
-    transform: rotate(360deg) scale(1);
-  }
-}
-
-@keyframes rotateGeometricInverse {
-  0% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(0deg);
+  to { 
+    transform: rotate(360deg) scale(1.4); 
   }
 }

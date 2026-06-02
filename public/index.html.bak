@@ -9,11 +9,15 @@
 
 <body>
 
-<!-- عناصر الأشكال البرمجية الهندسية المتحركة في الخلفية -->
-<div class="bg-wrapper">
-  <div class="geometric-shape shape-1"></div>
-  <div class="geometric-shape shape-2"></div>
-  <div class="matrix-grid"></div>
+<!-- نظام الشبكة والأشكال الهندسية المستوحى من كود فينوم -->
+<div class="grid"></div>
+
+<div class="shapes">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
 </div>
 
 <!-- حاوية التوسيط المطلق في منتصف الشاشة تماماً -->
