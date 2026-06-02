@@ -68,7 +68,7 @@ async function createIdentity() {
       }, 300);
 
     } else {
-      alert("حدث خطأ");
+      alert(data.error || "حدث خطأ");
     }
 
   } catch (err) {

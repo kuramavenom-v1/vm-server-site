@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>VM Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- الهوية -->
+  <div class="profile-card">
+    <img id="avatar">
+    <h2 id="name"></h2>
+    <p id="id"></p>
+    <p id="city"></p>
+  </div>
+
+  <!-- إحصائيات -->
+  <div class="stats">
+    <div>👥 عدد اللاعبين: 128 <span class="dot"></span></div>
+    <div>⭐ تقييم السيرفر: 4.8</div>
+  </div>
+
+  <!-- القوانين -->
+  <div class="box">
+    <h3>قوانين السيرفر</h3>
+    <p>احترام الجميع - عدم الغش - الالتزام بال ROL</p>
+  </div>
+
+  <!-- الروابط -->
+  <div class="links">
+    <button>Discord</button>
+    <button>Store</button>
+    <button>Bot</button>
+  </div>
+
+</div>
+
+<script>
+const user = JSON.parse(localStorage.getItem("vm_user"));
+
+document.getElementById("name").innerText = user.name;
+document.getElementById("id").innerText = user.id;
+document.getElementById("city").innerText = user.city;
+document.getElementById("avatar").src = user.image;
+</script>
+
+</body>
+</html>
