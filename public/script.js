@@ -45,8 +45,10 @@ async function createIdentity() {
 
       const user = data.data[0];
 
-      // 🟢 حفظ الهوية في الجهاز (NEW)
+      // ✅ حفظ الهوية في الجهاز (حل المشكلة الأساسية)
       localStorage.setItem("vm_user_id", user.identity_number);
+
+      console.log("SAVED ID:", user.identity_number);
 
       // تعبئة البطاقة
       document.getElementById("cardName").innerText = user.name;
@@ -78,10 +80,12 @@ async function createIdentity() {
 }
 
 
-/* 🟢 تسجيل دخول تلقائي عند فتح الموقع (NEW) */
+/* ✅ تسجيل دخول تلقائي عند فتح الموقع */
 window.onload = async () => {
 
   const id = localStorage.getItem("vm_user_id");
+
+  console.log("LOADED ID:", id);
 
   if (!id) return;
 
@@ -92,10 +96,14 @@ window.onload = async () => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ identity_number: id })
+      body: JSON.stringify({
+        identity_number: id
+      })
     });
 
     const data = await res.json();
+
+    console.log("GET USER RESPONSE:", data);
 
     if (data.success) {
 
@@ -111,6 +119,7 @@ window.onload = async () => {
     }
 
   } catch (err) {
-    console.log(err);
+    console.log("API ERROR:", err);
+    alert("فشل الاتصال بال API");
   }
 };
