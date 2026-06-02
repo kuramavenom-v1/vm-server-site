@@ -9,8 +9,6 @@ function toBase64(file) {
 
 async function createIdentity() {
 
-  console.log("بدأ التنفيذ");
-
   const name = document.getElementById("name").value;
   const age = document.getElementById("age").value;
   const city = document.getElementById("city").value;
@@ -18,107 +16,53 @@ async function createIdentity() {
   const file = document.getElementById("image").files[0];
 
   let image_base64 = "";
+  if (file) image_base64 = await toBase64(file);
 
-  if (file) {
-    image_base64 = await toBase64(file);
-  }
+  const res = await fetch("/api/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, age, city, psn, image_url: image_base64 })
+  });
 
-  try {
+  const data = await res.json();
 
-    const res = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name,
-        age,
-        city,
-        psn,
-        image_url: image_base64
-      })
-    });
+  if (data.success) {
 
-    const data = await res.json();
+    const user = data.user;
 
-    if (data.success) {
+    // 🔥 حفظ session بدل localStorage القديم
+    localStorage.setItem("session_id", user.session_id);
 
-      const user = data.data[0];
-
-      // 🔥 أهم إصلاح: حفظ الهوية
-      localStorage.setItem("vm_user_id", user.identity_number);
-
-      console.log("SAVED ID:", user.identity_number);
-
-      document.getElementById("cardName").innerText = user.name;
-      document.getElementById("cardId").innerText = "ID: " + user.identity_number;
-      document.getElementById("cardCity").innerText = user.city;
-      document.getElementById("cardPSN").innerText = user.psn;
-      document.getElementById("cardImage").src = user.image_url;
-
-      const card = document.getElementById("idCard");
-      const inner = document.querySelector(".card-inner");
-
-      card.classList.remove("hidden");
-
-      inner.style.transform = "rotateY(180deg)";
-
-      setTimeout(() => {
-        inner.style.transform = "rotateY(0deg)";
-      }, 300);
-
-    } else {
-      alert("حدث خطأ");
-    }
-
-  } catch (err) {
-    console.log(err);
-    alert("فشل الاتصال بالـ API");
+    showUser(user);
   }
 }
 
-
-/* 🔥 تحميل تلقائي للهوية */
 window.onload = async () => {
 
-  const id = localStorage.getItem("vm_user_id");
+  const session_id = localStorage.getItem("session_id");
 
-  console.log("GET USER ID:", id);
+  if (!session_id) return;
 
-  // 🚨 أهم حماية
-  if (!id || id === "null" || id === "undefined") {
-    console.log("No ID found → stop getUser");
-    return;
-  }
+  const res = await fetch("/api/getUser", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ session_id })
+  });
 
-  try {
+  const data = await res.json();
 
-    const res = await fetch("/api/getUser", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        identity_number: id
-      })
-    });
-
-    const data = await res.json();
-
-    if (data.success) {
-
-      const user = data.data;
-
-      document.getElementById("cardName").innerText = user.name;
-      document.getElementById("cardId").innerText = "ID: " + user.identity_number;
-      document.getElementById("cardCity").innerText = user.city;
-      document.getElementById("cardPSN").innerText = user.psn;
-      document.getElementById("cardImage").src = user.image_url;
-
-      document.getElementById("idCard").classList.remove("hidden");
-    }
-
-  } catch (err) {
-    console.log("API ERROR:", err);
+  if (data.success) {
+    showUser(data.user);
   }
 };
+
+function showUser(user) {
+
+  document.getElementById("cardName").innerText = user.name;
+  document.getElementById("cardId").innerText = user.session_id;
+  document.getElementById("cardCity").innerText = user.city;
+  document.getElementById("cardPSN").innerText = user.psn;
+  document.getElementById("cardImage").src = user.image_url;
+
+  document.getElementById("idCard").classList.remove("hidden");
+}

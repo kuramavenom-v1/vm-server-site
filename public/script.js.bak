@@ -85,7 +85,11 @@ window.onload = async () => {
 
   console.log("GET USER ID:", id);
 
-  if (!id) return;
+  // 🚨 أهم حماية
+  if (!id || id === "null" || id === "undefined") {
+    console.log("No ID found → stop getUser");
+    return;
+  }
 
   try {
 
@@ -116,6 +120,5 @@ window.onload = async () => {
 
   } catch (err) {
     console.log("API ERROR:", err);
-    alert("فشل الاتصال بال API");
   }
 };
