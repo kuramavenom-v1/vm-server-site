@@ -14,7 +14,12 @@ async function createIdentity() {
   const psn = document.getElementById("psn").value;
 
   const file = document.getElementById("image").files[0];
-  const image_url = file ? await toBase64(file) : "";
+
+  let image_base64 = "";
+
+  if (file) {
+    image_base64 = await toBase64(file);
+  }
 
   const res = await fetch("/api/register", {
     method: "POST",
@@ -26,36 +31,15 @@ async function createIdentity() {
       age,
       city,
       psn,
-      image_url
+      image_url: image_base64
     })
   });
 
   const data = await res.json();
 
   if (data.success) {
-    showPopup("تم إنشاء الهوية 🎉 رقمك: " + data.data[0].identity_number);
+    alert("تم إنشاء الهوية 🎉 رقمك: " + data.data[0].identity_number);
   } else {
-    showPopup("حدث خطأ ❌");
+    alert("حدث خطأ ❌");
   }
-}
-
-function showPopup(text) {
-  const div = document.createElement("div");
-
-  div.innerText = text;
-  div.style.position = "fixed";
-  div.style.bottom = "20px";
-  div.style.left = "50%";
-  div.style.transform = "translateX(-50%)";
-  div.style.background = "black";
-  div.style.color = "white";
-  div.style.padding = "10px 15px";
-  div.style.borderRadius = "8px";
-  div.style.fontSize = "14px";
-
-  document.body.appendChild(div);
-
-  setTimeout(() => {
-    div.remove();
-  }, 3000);
 }
