@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>VM - تسجيل الدخول</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>VM Roleplay</h1>
+
+    <div class="card">
+
+      <h2>إنشاء هوية</h2>
+
+      <input id="name" placeholder="الاسم">
+      <input id="age" placeholder="العمر">
+
+      <select id="city">
+        <option>Los Santos</option>
+        <option>Paleto Bay</option>
+        <option>Sandy Shores</option>
+        <option>Grapeseed</option>
+        <option>Harmony</option>
+        <option>Chumash</option>
+        <option>Banham Canyon</option>
+        <option>Tongva Hills</option>
+        <option>North Chumash</option>
+      </select>
+
+      <input id="psn" placeholder="PSN">
+
+      <input id="image" placeholder="رابط الصورة">
+
+      <button onclick="createIdentity()">إنشاء الهوية</button>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
