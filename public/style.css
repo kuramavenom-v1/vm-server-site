@@ -5,34 +5,33 @@
   font-family: Arial, sans-serif;
 }
 
-body {
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* 🔥 يمنع التمرير نهائيًا */
   background: #0b0b0f;
   color: white;
-  height: 100vh;
-  overflow: hidden; /* يمنع التمرير = شكل تطبيق */
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* شاشة التطبيق */
+/* تطبيق ثابت */
 .app {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-/* العنوان */
+/* عنوان */
 h1 {
-  font-size: 32px;
+  font-size: 28px;
   margin-bottom: 20px;
   color: #00e676;
+  text-align: center;
 }
 
-/* الكرت الرئيسي */
+/* كرت تسجيل الدخول */
 .card {
   width: 380px;
   background: #14141a;
@@ -41,7 +40,7 @@ h1 {
   box-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
 
-/* مدخلات احترافية */
+/* مدخلات */
 input, select {
   width: 100%;
   padding: 14px;
@@ -51,12 +50,10 @@ input, select {
   background: #0f0f15;
   color: white;
   outline: none;
-  transition: 0.2s;
 }
 
 input:focus, select:focus {
   border-color: #00e676;
-  box-shadow: 0 0 10px rgba(0,230,118,0.3);
 }
 
 /* زر */
@@ -72,8 +69,8 @@ button {
   margin-top: 10px;
 }
 
-button:hover {
-  transform: scale(1.02);
+button:active {
+  transform: scale(0.98);
 }
 
 /* 📱 الجوال */
@@ -83,6 +80,6 @@ button:hover {
   }
 
   h1 {
-    font-size: 24px;
+    font-size: 22px;
   }
 }
