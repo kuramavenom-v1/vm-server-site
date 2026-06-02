@@ -45,19 +45,17 @@ async function createIdentity() {
 
       const user = data.data[0];
 
-      // ✅ حفظ الهوية في الجهاز (حل المشكلة الأساسية)
+      // 🔥 أهم إصلاح: حفظ الهوية
       localStorage.setItem("vm_user_id", user.identity_number);
 
       console.log("SAVED ID:", user.identity_number);
 
-      // تعبئة البطاقة
       document.getElementById("cardName").innerText = user.name;
       document.getElementById("cardId").innerText = "ID: " + user.identity_number;
       document.getElementById("cardCity").innerText = user.city;
       document.getElementById("cardPSN").innerText = user.psn;
       document.getElementById("cardImage").src = user.image_url;
 
-      // إظهار البطاقة
       const card = document.getElementById("idCard");
       const inner = document.querySelector(".card-inner");
 
@@ -70,7 +68,7 @@ async function createIdentity() {
       }, 300);
 
     } else {
-      alert("حدث خطأ ❌");
+      alert("حدث خطأ");
     }
 
   } catch (err) {
@@ -80,12 +78,12 @@ async function createIdentity() {
 }
 
 
-/* ✅ تسجيل دخول تلقائي عند فتح الموقع */
+/* 🔥 تحميل تلقائي للهوية */
 window.onload = async () => {
 
   const id = localStorage.getItem("vm_user_id");
 
-  console.log("LOADED ID:", id);
+  console.log("GET USER ID:", id);
 
   if (!id) return;
 
@@ -102,8 +100,6 @@ window.onload = async () => {
     });
 
     const data = await res.json();
-
-    console.log("GET USER RESPONSE:", data);
 
     if (data.success) {
 
