@@ -1,20 +1,24 @@
-document.getElementById('register-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const idSuffix = document.getElementById('reg-id').value;
-    
-    // التحقق من أن الأرقام غير متتالية
-    const isSequential = (str) => {
-        for (let i = 0; i < str.length - 1; i++) {
-            if (Number(str[i]) + 1 === Number(str[i+1])) return true;
-        }
-        return false;
-    };
+async function createIdentity() {
+  const name = document.getElementById("name").value;
+  const age = document.getElementById("age").value;
+  const city = document.getElementById("city").value;
+  const psn = document.getElementById("psn").value;
+  const image_url = document.getElementById("image").value;
 
-    if (idSuffix.length !== 5 || isSequential(idSuffix)) {
-        alert("رقم الهوية غير صالح! يجب أن يكون 5 أرقام وغير متتالية.");
-        return;
-    }
+  const res = await fetch("/api/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name,
+      age,
+      city,
+      psn,
+      image_url
+    })
+  });
 
-    // هنا يتم الانتقال لعملية حفظ البيانات والأنيميشن...
-    alert("تم التحقق بنجاح! جاري إصدار هويتك...");
-});
+  const data = await res.json();
+  alert("تم إنشاء الهوية: " + data.data[0].identity_number);
+}

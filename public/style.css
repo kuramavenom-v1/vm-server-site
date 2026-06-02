@@ -1,54 +1,33 @@
-:root {
-    --glass: rgba(255, 255, 255, 0.05);
-    --border: rgba(69, 243, 255, 0.3);
-    --neon: #45f3ff;
-}
-
 body {
-    background: #0b0c10;
-    color: #fff;
-    font-family: 'Segoe UI', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+  font-family: Arial;
+  background: #0f0f0f;
+  color: white;
+  text-align: center;
 }
 
-.auth-form {
-    background: var(--glass);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    width: 90%;
-    max-width: 400px;
+.container {
+  margin-top: 50px;
 }
 
-h2 { color: var(--neon); margin-bottom: 20px; }
+.card {
+  background: #1c1c1c;
+  padding: 20px;
+  width: 300px;
+  margin: auto;
+  border-radius: 10px;
+}
 
 input, select {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    background: rgba(0,0,0,0.3);
-    border: 1px solid #444;
-    color: #fff;
-    border-radius: 8px;
-    box-sizing: border-box;
-    transition: 0.3s;
+  width: 90%;
+  padding: 10px;
+  margin: 5px;
 }
 
-input:focus { border-color: var(--neon); outline: none; }
-
-.submit-btn {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    background: var(--neon);
-    color: #000;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
+button {
+  padding: 10px;
+  width: 95%;
+  background: green;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
