@@ -10,24 +10,34 @@
 
 <h1>إنشاء هوية جديدة</h1>
 
-<div class="card">
+<div class="center-container">
+  <div class="card">
 
-  <input id="name" placeholder="الاسم">
-  <input id="age" placeholder="العمر">
-  <input id="city" placeholder="المدينة">
-  <input id="psn" placeholder="PSN">
-  <input type="file" id="image">
+    <h1>إنشاء هوية</h1>
 
-  <button onclick="createIdentity()">
-    إنشاء الهوية
-  </button>
+    <input type="text" id="name" placeholder="الاسم">
 
-  <button onclick="location.href='index.html'">
-    رجوع
-  </button>
+    <input type="number" id="age" placeholder="العمر">
 
+    <select id="city">
+      <option value="">اختر المدينة</option>
+      <option value="Los Santos">Los Santos</option>
+      <option value="Blaine County">Blaine County</option>
+      <option value="Paleto Bay">Paleto Bay</option>
+    </select>
+
+    <input type="text" id="psn" placeholder="PSN">
+
+    <button onclick="createIdentity()">
+      إنشاء الهوية
+    </button>
+
+    <button onclick="location.href='index.html'">
+      رجوع
+    </button>
+
+  </div>
 </div>
-
 <script src="script.js"></script>
 </body>
 </html>
