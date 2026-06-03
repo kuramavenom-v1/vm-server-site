@@ -1,86 +1,180 @@
 console.log("SCRIPT LOADED");
 
 async function createIdentity() {
-  console.log("REGISTER CLICKED");
 
-  const name = document.getElementById("name").value;
-  const age = document.getElementById("age").value;
-  const city = document.getElementById("city").value;
-  const psn = document.getElementById("psn").value;
+  const name = document.getElementById("name")?.value;
+  const age = document.getElementById("age")?.value;
+  const city = document.getElementById("city")?.value;
+  const psn = document.getElementById("psn")?.value;
+
+  if (!name || !age || !city || !psn) {
+    alert("اكمل جميع الحقول");
+    return;
+  }
 
   try {
+
     const res = await fetch("/api/register", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, age, city, psn })
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name,
+        age,
+        city,
+        psn
+      })
     });
 
     const data = await res.json();
-    console.log("REGISTER RESPONSE:", data);
+
+    console.log(data);
 
     if (!data.success) {
-      alert("فشل التسجيل");
+      alert(data.error || "فشل التسجيل");
       return;
     }
 
-    // حفظ ID الصح
-    localStorage.setItem("session_id", data.user.session_id);
+    localStorage.setItem(
+      "session_id",
+      data.user.session_id
+    );
 
-    window.location.href = "dashboard.html";
+    alert(
+      "تم إنشاء الهوية بنجاح\nID: " +
+      data.user.session_id
+    );
+
+    window.location.href = "/dashboard.html";
 
   } catch (err) {
-    console.log(err);
+
+    console.error(err);
     alert("API error register");
   }
 }
 
 async function loginUser() {
-  console.log("LOGIN CLICKED");
 
-  const id = document.getElementById("login_id").value;
+  const id =
+    document.getElementById("login_id")?.value;
+
+  if (!id) {
+    alert("ادخل رقم الهوية");
+    return;
+  }
 
   try {
+
     const res = await fetch("/api/getUser", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session_id: id })
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        session_id: id
+      })
     });
 
     const data = await res.json();
 
+    console.log(data);
+
     if (!data.success) {
-      alert("ID غير صحيح");
+      alert("رقم الهوية غير موجود");
       return;
     }
 
     localStorage.setItem("session_id", id);
-    window.location.href = "dashboard.html";
+
+    window.location.href = "/dashboard.html";
 
   } catch (err) {
+
+    console.error(err);
     alert("API error login");
   }
 }
 
 window.onload = async () => {
-  const id = localStorage.getItem("session_id");
+
+  const cardName =
+    document.getElementById("cardName");
+
+  if (!cardName) return;
+
+  const id =
+    localStorage.getItem("session_id");
+
   if (!id) return;
 
-  const res = await fetch("/api/getUser", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ session_id: id })
-  });
+  try {
 
-  const data = await res.json();
+    const res = await fetch("/api/getUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        session_id: id
+      })
+    });
 
-  if (data.success) {
+    const data = await res.json();
+
+    if (!data.success) return;
+
     showUser(data.user);
+
+  } catch (err) {
+
+    console.error(err);
   }
 };
 
 function showUser(user) {
-  document.getElementById("cardName").innerText = user.name;
-  document.getElementById("cardId").innerText = user.session_id;
-  document.getElementById("cardCity").innerText = user.city;
-  document.getElementById("cardPSN").innerText = user.psn;
+
+  const cardName =
+    document.getElementById("cardName");
+
+  const cardId =
+    document.getElementById("cardId");
+
+  const cardCity =
+    document.getElementById("cardCity");
+
+  const cardPSN =
+    document.getElementById("cardPSN");
+
+  const cardAge =
+    document.getElementById("cardAge");
+
+  if (!cardName) return;
+
+  cardName.innerText =
+    user.name || "";
+
+  if (cardId)
+    cardId.innerText =
+      user.session_id || "";
+
+  if (cardCity)
+    cardCity.innerText =
+      user.city || "";
+
+  if (cardPSN)
+    cardPSN.innerText =
+      user.psn || "";
+
+  if (cardAge)
+    cardAge.innerText =
+      user.age || "";
+}
+
+function logout() {
+
+  localStorage.removeItem("session_id");
+
+  window.location.href = "/index.html";
 }
