@@ -31,7 +31,7 @@
 
     <input id="psn" placeholder="PSN">
 
-    <!-- 🔥 إضافة الصورة -->
+    <!--  إضافة الصورة -->
     <input type="file" id="image" accept="image/*">
 
     <button onclick="createIdentity()">إنشاء الهوية</button>

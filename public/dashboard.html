@@ -1,72 +1,40 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-<meta charset="UTF-8">
-<title>الهوية الوطنية</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="card.css">
-</head>
+<!DOCTYPE html>  <html lang="ar">  
+<head>  
+<meta charset="UTF-8">  
+<title>الهوية الوطنية</title>  
+<link rel="stylesheet" href="style.css">  
+<link rel="stylesheet" href="card.css">  
+</head>  <body>  <h1>بطاقة الهوية الوطنية</h1>  <div class="layout">    <!-- 🪪 الهوية -->    <div class="id-card">  <div class="id-header">  
+  <div>المملكة الافتراضية</div>  
+  <div>هوية مواطن</div>  
+</div>  
 
-<body>
+<div class="id-body">  
 
-<h1>بطاقة الهوية الوطنية</h1>
+  <img id="cardImage" class="id-img">  
 
-<div class="layout">
+  <div class="id-info">  
+    <h2 id="cardName"></h2>  
 
-  <!-- 🪪 الهوية -->
-  <div class="id-card">
+    <p>رقم الهوية: <span id="cardId"></span></p>  
+    <p>العمر: <span id="cardAge"></span></p>  
+      <p>المدينة: <span id="cardCity"></span></p>
 
-    <div class="id-header">
-      <div>المملكة الافتراضية</div>
-      <div>هوية مواطن</div>
-    </div>
-
-    <div class="id-body">
-
-      <img id="cardImage" class="id-img">
-
-      <div class="id-info">
-        <h2 id="cardName"></h2>
-
-        <p>رقم الهوية: <span id="cardId"></span></p>
-        <p>العمر: <span id="cardAge"></span></p>
-        <select id="city">
-  <option value="">اختر المدينة</option>
-  <option value="Los Santos">Los Santos</option>
-  <option value="Sandy Shores">Sandy Shores</option>
-  <option value="Paleto Bay">Paleto Bay</option>
-</select>
-        <p>PSN: <span id="cardPSN"></span></p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- 📊 السيرفر -->
-  <div class="server-box">
-
-    <h2>معلومات السيرفر</h2>
-
-    <div class="stat">👥 اللاعبين: 0</div>
-    <div class="stat">🟢 Online</div>
-    <div class="stat">📡 Ping: 25ms</div>
-    <div class="stat">🏷️ VM Roleplay</div>
-
-  </div>
+</select>  
+        <p>PSN: <span id="cardPSN"></span></p>  </div>  
 
 </div>
 
-<!-- 🔘 أزرار -->
-<div class="actions">
+  </div>    <!-- 📊 السيرفر -->    <div class="server-box">  <h2>معلومات السيرفر</h2>  
 
-  <button onclick="location.href='index.html'">خروج</button>
-  <button onclick="location.href='rules.html'">القوانين</button>
-  <button onclick="alert('قائمة اللاعبين قريباً')">اللاعبين</button>
+<div class="stat">👥 اللاعبين: 0</div>  
+<div class="stat">🟢 Online</div>  
+<div class="stat">📡 Ping: 25ms</div>  
+<div class="stat">🏷️ VM Roleplay</div>
 
-</div>
+  </div>  </div>  <!-- 🔘 أزرار -->  <div class="actions">  <button onclick="location.href='index.html'">خروج</button>
+<button onclick="location.href='rules.html'">القوانين</button>
+<button onclick="alert('قائمة اللاعبين قريباً')">اللاعبين</button>
 
-<script src="script.js"></script>
-</body>
-</html>
+</div>  <script src="script.js"></script>  </body>  
+</html>  كذا داشبورد صح

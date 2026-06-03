@@ -103,9 +103,9 @@ async function loginUser() {
 }
 
 // =====================
-// تحميل الداشبورد
+// تحميل الداشبورد (أقوى من onload)
 // =====================
-window.onload = async () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
   const id = localStorage.getItem("session_id");
 
@@ -128,10 +128,10 @@ window.onload = async () => {
   } catch (err) {
     console.error(err);
   }
-};
+});
 
 // =====================
-// عرض الهوية
+// عرض الهوية (معدل + آمن)
 // =====================
 function showUser(user) {
 
@@ -146,13 +146,17 @@ function showUser(user) {
 
   cardName.innerText = user.name || "";
   cardId.innerText = user.session_id || "";
-  cardCity.innerText = user.city || "";
-  cardPSN.innerText = user.psn || "";
-  cardAge.innerText = user.age || "";
+  cardCity.innerText = user.city || "—";
+  cardPSN.innerText = user.psn || "—";
+  cardAge.innerText = user.age || "—";
 
-  // الصورة
-  if (cardImage && user.image_url) {
-    cardImage.src = user.image_url;
+  //  الصورة (إصلاح نهائي)
+  if (cardImage) {
+    if (user.image_url && user.image_url !== "") {
+      cardImage.src = user.image_url;
+    } else {
+      cardImage.src = "/default.png"; // لو تبي صورة افتراضية
+    }
   }
 }
 
