@@ -6,189 +6,215 @@
 <title>قوانين سيرفر VM</title>
 
 <style>
-
 /* =========================
-   RESET + BASE
+   BASE
 ========================= */
-
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial, sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
 }
 
 body{
-    background:#05070d;
-    color:#e6f1ff;
-    padding:20px;
-    line-height:1.6;
+  background:#05070d;
+  color:#e6f1ff;
+  padding:20px;
+  line-height:1.7;
 }
 
 /* =========================
    CONTAINER
 ========================= */
-
 .container{
-    width:100%;
-    max-width:720px;
-    margin:auto;
+  max-width:780px;
+  margin:auto;
 }
 
 /* =========================
-   HEADER (NEON DOC)
+   HEADER
 ========================= */
-
 header{
-    text-align:center;
-    padding:25px 15px;
-    margin-bottom:25px;
+  text-align:center;
+  padding:22px;
+  margin-bottom:20px;
 
-    background:linear-gradient(145deg,#0b1220,#070a12);
-    border:1px solid rgba(0,140,255,0.25);
-    border-radius:14px;
+  background:linear-gradient(145deg,#0b1220,#070a12);
+  border:1px solid rgba(0,140,255,0.25);
+  border-radius:14px;
 
-    box-shadow:0 0 20px rgba(0,140,255,0.15);
+  box-shadow:0 0 18px rgba(0,140,255,0.15);
 }
 
 header h1{
-    font-size:1.6rem;
-    color:#4db5ff;
-    text-shadow:0 0 10px rgba(0,140,255,0.6);
+  font-size:1.6rem;
+  color:#4db5ff;
+  text-shadow:0 0 10px rgba(0,140,255,0.6);
 }
 
 header p{
-    font-size:0.9rem;
-    color:#a9c7e6;
+  color:#a9c7e6;
+  font-size:0.9rem;
+  margin-top:5px;
 }
 
 /* =========================
    TITLES
 ========================= */
-
 .section-title{
-    margin:25px 0 12px;
-    font-size:1.1rem;
-    color:#4db5ff;
-    border-right:3px solid #4db5ff;
-    padding-right:10px;
+  margin:22px 0 10px;
+  font-size:1.1rem;
+  color:#4db5ff;
+
+  border-right:3px solid #4db5ff;
+  padding-right:10px;
+
+  text-shadow:0 0 8px rgba(0,140,255,0.4);
 }
 
 /* =========================
-   CARD SYSTEM
+   CARD
 ========================= */
-
 .card{
-    background:linear-gradient(145deg,#0a0f1a,#060912);
-    border:1px solid rgba(0,140,255,0.15);
-    border-radius:14px;
-    padding:15px;
-    margin-bottom:15px;
-    box-shadow:0 0 15px rgba(0,140,255,0.08);
+  background:linear-gradient(145deg,#0a0f1a,#060912);
+
+  border:1px solid rgba(0,140,255,0.15);
+  border-radius:14px;
+
+  padding:15px;
+  margin-bottom:15px;
+
+  box-shadow:0 0 15px rgba(0,140,255,0.08);
 }
 
 /* =========================
    ALERT / INFO
 ========================= */
+.alert-box{
+  background:rgba(0,140,255,0.06);
+  border:1px solid rgba(0,140,255,0.25);
 
-.alert-box,
+  padding:12px;
+  border-radius:10px;
+
+  color:#cfe8ff;
+  font-size:0.9rem;
+}
+
 .info-box{
-    padding:12px;
-    border-radius:10px;
-    border:1px solid rgba(0,140,255,0.25);
-    background:rgba(0,140,255,0.05);
-    color:#cfe8ff;
+  background:rgba(77,181,255,0.08);
+  border:1px solid rgba(77,181,255,0.25);
+
+  padding:12px;
+  border-radius:10px;
+
+  color:#cfe8ff;
 }
 
 /* =========================
    TABLE
 ========================= */
-
 .table-container{
-    overflow-x:auto;
+  overflow-x:auto;
 }
 
 table{
-    width:100%;
-    border-collapse:collapse;
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
 }
 
 th{
-    background:#0d1b2a;
-    color:#4db5ff;
-    padding:10px;
-    border:1px solid rgba(0,140,255,0.2);
+  background:linear-gradient(145deg,#0d1b2a,#08111c);
+  color:#4db5ff;
+
+  padding:10px;
+  border:1px solid rgba(0,140,255,0.2);
+  font-size:13px;
 }
 
 td{
-    padding:10px;
-    border:1px solid rgba(0,140,255,0.15);
-    color:#d7e9ff;
-    font-size:13px;
+  padding:10px;
+  border:1px solid rgba(0,140,255,0.15);
+  font-size:13px;
+  color:#d7e9ff;
 }
 
 /* =========================
    RULES LIST
 ========================= */
-
 .rules-list{
-    list-style:none;
+  list-style:none;
 }
 
 .rules-list li{
-    position:relative;
-    padding:10px 10px 10px 25px;
-    margin-bottom:6px;
+  position:relative;
+  padding:10px 10px 10px 25px;
+  margin-bottom:8px;
 
-    background:rgba(0,140,255,0.04);
-    border:1px solid rgba(0,140,255,0.1);
-    border-radius:10px;
+  background:rgba(0,140,255,0.04);
+  border:1px solid rgba(0,140,255,0.1);
+  border-radius:10px;
+
+  color:#d7e9ff;
 }
 
 .rules-list li::before{
-    content:"■";
-    position:absolute;
-    left:10px;
-    top:10px;
-    color:#4db5ff;
+  content:"■";
+  position:absolute;
+  left:10px;
+  top:12px;
+
+  color:#4db5ff;
+  text-shadow:0 0 8px #4db5ff;
 }
 
 /* =========================
    PUNISHMENT
 ========================= */
-
 .punishment{
-    color:#ff4d6d;
-    font-weight:bold;
+  color:#ff4d6d;
+  font-weight:bold;
+  text-shadow:0 0 6px rgba(255,77,109,0.4);
 }
 
 /* =========================
    BUTTON
 ========================= */
-
 .flat-btn{
-    width:100%;
-    padding:12px;
+  width:100%;
+  padding:12px;
 
-    background:linear-gradient(145deg,#0d6efd,#0a3d91);
-    color:#fff;
+  margin-top:15px;
 
-    border:none;
-    border-radius:10px;
+  background:linear-gradient(145deg,#0d6efd,#0a3d91);
+  color:#fff;
 
-    font-weight:bold;
-    cursor:pointer;
+  border:none;
+  border-radius:10px;
 
-    box-shadow:0 0 15px rgba(0,140,255,0.4);
-    transition:0.2s;
+  font-weight:bold;
+  cursor:pointer;
+
+  box-shadow:0 0 15px rgba(0,140,255,0.4);
+  transition:0.2s;
 }
 
 .flat-btn:hover{
-    transform:scale(1.02);
-    box-shadow:0 0 20px rgba(0,140,255,0.6);
+  transform:scale(1.02);
+  box-shadow:0 0 20px rgba(0,140,255,0.6);
 }
 
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:600px){
+  body{
+    padding:12px;
+  }
+}
 </style>
+
 </head>
 
 <body>
@@ -196,8 +222,58 @@ td{
 <div class="container">
 
 <header>
-    <h1>سيرفر VM | القوانين الرسمية</h1>
+    <h1>سيرفر VM | القوانين</h1>
     <p>الرجاء الالتزام التام بالقوانين لتجنب العقوبات</p>
 </header>
 
-<!-- باقي المحتوى نفسه بدون تغيير -->
+<!-- ===== باقي المحتوى بدون تغيير ===== -->
+
+<h2 class="section-title">نظام السرقات وتفاصيلها</h2>
+<div class="card">
+    <div class="alert-box">
+        <strong>ملاحظة إجبارية:</strong> العدد الإجباري للمشاركين بالسرقة يجب أن يكون نفس المكتوب تماماً لا يزيد ولا ينقص!
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>نوع السرقة</th>
+                    <th>عدد المشاركين</th>
+                    <th>المبلغ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>سرقة الحلاق</td><td>1-3</td><td>3000$</td></tr>
+                <tr><td>سرقة البقالة</td><td>2-5</td><td>5000$</td></tr>
+                <tr><td>سرقة الملابس</td><td>2-6</td><td>10000$</td></tr>
+                <tr><td>سرقة الأسلحة</td><td>4-6</td><td>12000$</td></tr>
+                <tr><td>البنك المركزي</td><td>6-10</td><td>20000$</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<h2 class="section-title">عقوبات الباند الفوري</h2>
+<div class="card">
+    <div class="alert-box">
+        أي مخالفة خطيرة = <span class="punishment">باند مباشر</span>
+    </div>
+</div>
+
+<h2 class="section-title">قوانين الـ Roleplay</h2>
+<div class="card">
+    <ul class="rules-list">
+        <li>ممنوع إطلاق النار أثناء القيادة.</li>
+        <li>ممنوع القتل بدون سبب.</li>
+        <li>ممنوع سحب سلاح غير موجود.</li>
+        <li>احترام جميع اللاعبين إلزامي.</li>
+    </ul>
+</div>
+
+<button class="flat-btn">موافق، تم قراءة القوانين</button>
+
+</div>
+
+</body>
+</html>
