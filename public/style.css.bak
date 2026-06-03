@@ -139,6 +139,19 @@ input, select {
   transform: rotate(45deg);
 }
 
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #111;
+  color: white;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
 /* =========================
    MOBILE SAFE
 ========================= */

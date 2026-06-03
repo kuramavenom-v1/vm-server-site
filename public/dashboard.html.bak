@@ -33,7 +33,7 @@
         <select id="city">
   <option value="">اختر المدينة</option>
   <option value="Los Santos">Los Santos</option>
-  <option value="Sandy Shores">Sandy Shores</option>
+  <option value="Blaine County">Blaine County</option>
   <option value="Paleto Bay">Paleto Bay</option>
 </select>
         <p>PSN: <span id="cardPSN"></span></p>
