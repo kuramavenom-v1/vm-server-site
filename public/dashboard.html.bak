@@ -54,15 +54,15 @@
         </div>
 
         <div class="stat">
-         ❄ Owner : Venom 
+          Owner : Venom 
         </div>
 
         <div class="stat">
-          ❄ Dev: ( Not specified ) 
+           Dev: ( Not specified ) 
         </div>
 
         <div class="stat">
-         👥 players : <span id="playerCount">0</span>
+         players : <span id="playerCount">0</span>
         </div>
 
       </div>
