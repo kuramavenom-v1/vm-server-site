@@ -13,7 +13,6 @@
 
 <div class="center-container">
 
-<!-- REGISTER -->
 <div class="card" id="registerBox">
 
     <h1>إنشاء هوية</h1>
@@ -31,7 +30,7 @@
 
     <input id="psn" placeholder="PSN">
 
-    <!--  إضافة الصورة -->
+    <!--  الصورة (مهم جدًا) -->
     <input type="file" id="image" accept="image/*">
 
     <button onclick="createIdentity()">إنشاء الهوية</button>
@@ -41,5 +40,6 @@
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>

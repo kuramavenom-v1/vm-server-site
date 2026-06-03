@@ -1,40 +1,58 @@
-<!DOCTYPE html>  <html lang="ar">  
-<head>  
-<meta charset="UTF-8">  
-<title>الهوية الوطنية</title>  
-<link rel="stylesheet" href="style.css">  
-<link rel="stylesheet" href="card.css">  
-</head>  <body>  <h1>بطاقة الهوية الوطنية</h1>  <div class="layout">    <!-- 🪪 الهوية -->    <div class="id-card">  <div class="id-header">  
-  <div>المملكة الافتراضية</div>  
-  <div>هوية مواطن</div>  
-</div>  
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الهوية الوطنية</title>
 
-<div class="id-body">  
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="card.css">
+</head>
 
-  <img id="cardImage" class="id-img">  
+<body>
 
-  <div class="id-info">  
-    <h2 id="cardName"></h2>  
+<div class="center-container">
 
-    <p>رقم الهوية: <span id="cardId"></span></p>  
-    <p>العمر: <span id="cardAge"></span></p>  
-      <p>المدينة: <span id="cardCity"></span></p>
+  <div class="id-card">
 
-</select>  
-        <p>PSN: <span id="cardPSN"></span></p>  </div>  
+    <!-- HEADER -->
+    <div class="id-header">
+      <div>VM GOVERNMENT</div>
+      <div>IDENTITY CARD</div>
+    </div>
+
+    <!-- BODY -->
+    <div class="id-body">
+
+      <img id="cardImage" class="id-img">
+
+      <div class="id-info">
+        <h2 id="cardName"></h2>
+
+        <p>ID: <span id="cardId"></span></p>
+        <p>Age: <span id="cardAge"></span></p>
+        <p>City: <span id="cardCity"></span></p>
+        <p>PSN: <span id="cardPSN"></span></p>
+
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="id-footer">
+      <div class="status">🟢 ACTIVE CITIZEN</div>
+    </div>
+
+  </div>
 
 </div>
 
-  </div>    <!-- 📊 السيرفر -->    <div class="server-box">  <h2>معلومات السيرفر</h2>  
+<div class="actions">
+  <button onclick="location.href='index.html'">خروج</button>
+  <button onclick="location.href='rules.html'">القوانين</button>
+  <button onclick="logout()">تسجيل خروج</button>
+</div>
 
-<div class="stat">👥 اللاعبين: 0</div>  
-<div class="stat">🟢 Online</div>  
-<div class="stat">📡 Ping: 25ms</div>  
-<div class="stat">🏷️ VM Roleplay</div>
-
-  </div>  </div>  <!-- 🔘 أزرار -->  <div class="actions">  <button onclick="location.href='index.html'">خروج</button>
-<button onclick="location.href='rules.html'">القوانين</button>
-<button onclick="alert('قائمة اللاعبين قريباً')">اللاعبين</button>
-
-</div>  <script src="script.js"></script>  </body>  
-</html>  كذا داشبورد صح
+<script src="script.js"></script>
+</body>
+</html>
