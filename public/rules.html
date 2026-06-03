@@ -65,11 +65,8 @@ header p{
   margin:22px 0 10px;
   padding-right:10px;
   border-right:3px solid #4db5ff;
-
   color:#4db5ff;
   font-size:1.1rem;
-
-  text-shadow:0 0 8px rgba(0,140,255,0.4);
 }
 
 /* =========================
@@ -77,14 +74,10 @@ header p{
 ========================= */
 .card{
   background:linear-gradient(145deg,#0a0f1a,#060912);
-
   border:1px solid rgba(0,140,255,0.15);
   border-radius:14px;
-
   padding:15px;
   margin-bottom:15px;
-
-  box-shadow:0 0 15px rgba(0,140,255,0.08);
 }
 
 /* =========================
@@ -96,15 +89,12 @@ ul{
 
 li{
   position:relative;
-
   padding:10px 10px 10px 25px;
   margin-bottom:8px;
 
   background:rgba(0,140,255,0.04);
   border:1px solid rgba(0,140,255,0.1);
   border-radius:10px;
-
-  color:#d7e9ff;
 }
 
 li::before{
@@ -112,27 +102,69 @@ li::before{
   position:absolute;
   left:10px;
   top:12px;
-
   color:#4db5ff;
-  text-shadow:0 0 8px #4db5ff;
 }
 
 /* =========================
-   WARNING TEXT
+   BUTTONS AREA
 ========================= */
-.bad{
-  color:#ff4d6d;
+.actions{
+  margin-top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+/* زر التأكيد */
+.confirm-btn{
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(145deg,#0d6efd,#0a3d91);
+  color:#fff;
   font-weight:bold;
-  text-shadow:0 0 6px rgba(255,77,109,0.4);
+  cursor:pointer;
+  box-shadow:0 0 15px rgba(0,140,255,0.4);
+}
+
+/* زر الرجوع */
+.back-btn{
+  padding:12px;
+  border-radius:10px;
+  background:transparent;
+  color:#cfe8ff;
+  border:1px solid rgba(0,140,255,0.3);
+  cursor:pointer;
 }
 
 /* =========================
-   SMALL TITLE INSIDE CARD
+   CHECK ICON (الصح المتحرك)
 ========================= */
-.sub-title{
-  color:#4db5ff;
-  margin-bottom:10px;
-  font-weight:bold;
+.check-icon{
+  display:inline-block;
+  margin-right:10px;
+
+  font-size:18px;
+  color:#00ff99;
+
+  opacity:0;
+  transform:translateY(-15px) scale(0.5);
+
+  text-shadow:0 0 10px #00ff99;
+  transition:all 0.5s ease;
+}
+
+/* لما يظهر */
+.check-icon.show{
+  opacity:1;
+  transform:translateY(0) scale(1.2);
+  animation:pop 0.6s ease;
+}
+
+@keyframes pop{
+  0%   { transform:translateY(-20px) scale(0.3); opacity:0; }
+  60%  { transform:translateY(5px) scale(1.3); opacity:1; }
+  100% { transform:translateY(0) scale(1.1); }
 }
 
 </style>
@@ -145,106 +177,53 @@ li::before{
 
 <header>
   <h1>قوانين السيرفر</h1>
-  <p>الرجاء الالتزام بالقوانين لتجنب العقوبات</p>
+  <p>الرجاء الالتزام بالقوانين</p>
 </header>
 
-<!-- ===================== -->
+<!-- ===== القوانين (مختصر للحفاظ على المساحة) ===== -->
 <h2 class="section-title">السرقات</h2>
-
-<div class="card">
-
-<div class="sub-title">عدد المشاركين</div>
-<ul>
-<li>سرقة الحلاق: من 1 إلى 3</li>
-<li>سرقة البقالة: من 2 إلى 5</li>
-<li>سرقة محل الملابس: من 2 إلى 6</li>
-<li>سرقة محل الأسلحة: من 4 إلى 6</li>
-<li>سرقة البنك المركزي: من 6 إلى 10</li>
-</ul>
-
-<div class="sub-title">المبالغ</div>
-<ul>
-<li>الحلاق: 3000$</li>
-<li>البقالة: 5000$</li>
-<li>الملابس: 10000$</li>
-<li>الأسلحة: 12000$ + SNS</li>
-<li>البنك المركزي: 20000$</li>
-</ul>
-
-<p class="bad">
-✔ العدد إجباري لا يزيد ولا ينقص<br>
-✔ الشرطة تزيد +1 عن عدد المجرمين<br>
-✔ ممنوع التواجد أكثر من العدد المذكور
-</p>
-
-</div>
-
-<!-- ===================== -->
-<h2 class="section-title">عقوبات خطيرة</h2>
-
 <div class="card">
 <ul>
-<li>أي شخص يذبح ويتحرك = باند يومين</li>
-<li>التكرار = باند نهائي ⚔️</li>
-<li>سحب أي سلاح من غير سلاح = باند نهائي</li>
+<li>الحلاق 1-3</li>
+<li>البقالة 2-5</li>
+<li>الملابس 2-6</li>
+<li>الأسلحة 4-6</li>
+<li>البنك 6-10</li>
 </ul>
 </div>
 
-<!-- ===================== -->
-<h2 class="section-title">قوانين القتال والرول بلاي</h2>
-
+<h2 class="section-title">القوانين العامة</h2>
 <div class="card">
 <ul>
-<li>ممنوع تطلق وأنت تسوق (المرافق فقط)</li>
-<li>ممنوع تعدم بدون عداوة 4 أقيام</li>
-<li>ممنوع سلاح مو عندك</li>
-<li>ممنوع قتل بدون سبب</li>
-<li>ممنوع دخول بيت مو لك</li>
-<li>الكلبشة: تضرب بوكس قبلها</li>
-<li>إذا مسقط وممسوك ممنوع تتحلل</li>
-<li>تفجير 3 كفرات = توقف إجباري</li>
-<li>مسموح دراجات نارية</li>
-<li>السكين = إسقاط</li>
-<li>العجرة 3 دقائق / الفأس إسقاط</li>
-<li>الأسلحة: إسقاط + إنعاش بطريقة RP</li>
-<li>ممنوع قتل الرقابة أو التعامل معهم = باند</li>
-<li>خطف العسكر من 5+ فقط</li>
-<li>مسموح خطف شخص واحد فقط</li>
-<li>ممنوع الهروب أثناء الإنعاش</li>
-<li>سرقة التاكسي ممنوعة</li>
-<li>تلويت العسكري ممنوع = باند</li>
-<li>السب داخل وخارج الرول = باند نهائي</li>
-<li>الاقتراب من الشرطة أثناء الاصطفاف ممنوع</li>
+<li>ممنوع القتل بدون سبب</li>
+<li>ممنوع الطلق أثناء القيادة</li>
+<li>ممنوع السب</li>
 </ul>
 </div>
 
-<!-- ===================== -->
-<h2 class="section-title">مخالفات عامة</h2>
+<!-- ===== الأزرار ===== -->
+<div class="actions">
 
-<div class="card">
-<ul>
-<li>دخول القسم أول 10 دقائق = باند قيم</li>
-<li>الطلق بالمناطق العامة = باند 3 أقيام</li>
-<li>سرقة سيارة بدون شراء = باند 2 أقيام</li>
-<li>الشتم = باند 5 أقيام</li>
-<li>الكذب على الرقابة = باند 5 أقيام</li>
-</ul>
-</div>
+  <button class="confirm-btn" onclick="confirmRules()">
+    <span id="check" class="check-icon">✔</span>
+    تم قراءة القوانين
+  </button>
 
-<!-- ===================== -->
-<h2 class="section-title">التواصل والتفاوض</h2>
+  <button class="back-btn" onclick="history.back()">
+    رجوع
+  </button>
 
-<div class="card">
-<ul>
-<li>ممنوع أي مشاكل داخل الرول</li>
-<li>التواصل مع الأونر: Opaida_O</li>
-<li>ممنوع التعدي بالكلام أثناء التفاوض</li>
-<li>التفاوض فقط لمصلحة اللعبة</li>
-<li>أي تخريب يتم تجاهله وعدم الرد</li>
-</ul>
 </div>
 
 </div>
+
+<script>
+function confirmRules(){
+  const check = document.getElementById("check");
+
+  check.classList.add("show");
+}
+</script>
 
 </body>
 </html>
