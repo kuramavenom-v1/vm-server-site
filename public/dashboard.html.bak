@@ -35,7 +35,7 @@
             <p>رقم الهوية: <span id="cardId"></span></p>
             <p>العمر: <span id="cardAge"></span></p>
             <p>المدينه: <span id="cardCity"></span></p>
-            <p>يوزرك سوني: <span id="cardPSN"></span></p>
+            <p>PSN: <span id="cardPSN"></span></p>
           </div>
 
         </div>
