@@ -13,7 +13,7 @@
 
 <div class="center-container">
 
-<!-- ========== REGISTER ========== -->
+<!-- REGISTER -->
 <div class="card" id="registerBox">
 
     <h1>إنشاء هوية</h1>
@@ -21,7 +21,7 @@
     <input id="name" placeholder="الاسم">
     <input id="age" placeholder="العمر">
 
-    <!-- المدينة (ثابتة) -->
+    <!-- المدينة -->
     <select id="city">
         <option value="">اختر المدينة</option>
         <option value="Los Santos">Los Santos</option>
@@ -31,20 +31,10 @@
 
     <input id="psn" placeholder="PSN">
 
+    <!--  إضافة الصورة -->
+    <input type="file" id="image" accept="image/*">
+
     <button onclick="createIdentity()">إنشاء الهوية</button>
-
-</div>
-
-
-<!-- ========== DASHBOARD بعد الإنشاء ========== -->
-<div class="card hidden" id="dashboardBox">
-
-    <h1>تم إنشاء الهوية</h1>
-
-    <p id="outName"></p>
-    <p id="outId"></p>
-    <p id="outCity"></p>
-    <p id="outPSN"></p>
 
 </div>
 

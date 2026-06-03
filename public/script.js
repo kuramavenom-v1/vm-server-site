@@ -1,64 +1,76 @@
 console.log("SCRIPT LOADED");
 
+// =====================
+// تحويل الصورة
+// =====================
+async function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// =====================
+// إنشاء الهوية
+// =====================
 async function createIdentity() {
 
   const name = document.getElementById("name")?.value;
   const age = document.getElementById("age")?.value;
   const city = document.getElementById("city")?.value;
   const psn = document.getElementById("psn")?.value;
+  const imageFile = document.getElementById("image")?.files[0];
 
   if (!name || !age || !city || !psn) {
     alert("اكمل جميع الحقول");
     return;
   }
 
+  let image_url = "";
+
+  if (imageFile) {
+    image_url = await toBase64(imageFile);
+  }
+
   try {
 
     const res = await fetch("/api/register", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name,
         age,
         city,
-        psn
+        psn,
+        image_url
       })
     });
 
     const data = await res.json();
-
-    console.log(data);
 
     if (!data.success) {
       alert(data.error || "فشل التسجيل");
       return;
     }
 
-    localStorage.setItem(
-      "session_id",
-      data.user.session_id
-    );
-
-    alert(
-      "تم إنشاء الهوية بنجاح\nID: " +
-      data.user.session_id
-    );
+    localStorage.setItem("session_id", data.user.session_id);
 
     window.location.href = "/dashboard.html";
 
   } catch (err) {
-
     console.error(err);
     alert("API error register");
   }
 }
 
+// =====================
+// تسجيل الدخول
+// =====================
 async function loginUser() {
 
-  const id =
-    document.getElementById("login_id")?.value;
+  const id = document.getElementById("login_id")?.value;
 
   if (!id) {
     alert("ادخل رقم الهوية");
@@ -69,17 +81,11 @@ async function loginUser() {
 
     const res = await fetch("/api/getUser", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        session_id: id
-      })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session_id: id })
     });
 
     const data = await res.json();
-
-    console.log(data);
 
     if (!data.success) {
       alert("رقم الهوية غير موجود");
@@ -91,21 +97,17 @@ async function loginUser() {
     window.location.href = "/dashboard.html";
 
   } catch (err) {
-
     console.error(err);
     alert("API error login");
   }
 }
 
+// =====================
+// تحميل الداشبورد
+// =====================
 window.onload = async () => {
 
-  const cardName =
-    document.getElementById("cardName");
-
-  if (!cardName) return;
-
-  const id =
-    localStorage.getItem("session_id");
+  const id = localStorage.getItem("session_id");
 
   if (!id) return;
 
@@ -113,12 +115,8 @@ window.onload = async () => {
 
     const res = await fetch("/api/getUser", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        session_id: id
-      })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session_id: id })
     });
 
     const data = await res.json();
@@ -128,53 +126,40 @@ window.onload = async () => {
     showUser(data.user);
 
   } catch (err) {
-
     console.error(err);
   }
 };
 
+// =====================
+// عرض الهوية
+// =====================
 function showUser(user) {
 
-  const cardName =
-    document.getElementById("cardName");
-
-  const cardId =
-    document.getElementById("cardId");
-
-  const cardCity =
-    document.getElementById("cardCity");
-
-  const cardPSN =
-    document.getElementById("cardPSN");
-
-  const cardAge =
-    document.getElementById("cardAge");
+  const cardName = document.getElementById("cardName");
+  const cardId = document.getElementById("cardId");
+  const cardCity = document.getElementById("cardCity");
+  const cardPSN = document.getElementById("cardPSN");
+  const cardAge = document.getElementById("cardAge");
+  const cardImage = document.getElementById("cardImage");
 
   if (!cardName) return;
 
-  cardName.innerText =
-    user.name || "";
+  cardName.innerText = user.name || "";
+  cardId.innerText = user.session_id || "";
+  cardCity.innerText = user.city || "";
+  cardPSN.innerText = user.psn || "";
+  cardAge.innerText = user.age || "";
 
-  if (cardId)
-    cardId.innerText =
-      user.session_id || "";
-
-  if (cardCity)
-    cardCity.innerText =
-      user.city || "";
-
-  if (cardPSN)
-    cardPSN.innerText =
-      user.psn || "";
-
-  if (cardAge)
-    cardAge.innerText =
-      user.age || "";
+  // الصورة
+  if (cardImage && user.image_url) {
+    cardImage.src = user.image_url;
+  }
 }
 
+// =====================
+// تسجيل خروج
+// =====================
 function logout() {
-
   localStorage.removeItem("session_id");
-
   window.location.href = "/index.html";
 }
