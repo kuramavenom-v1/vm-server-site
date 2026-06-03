@@ -22,7 +22,7 @@
       <div class="id-card">
 
         <div class="id-header">
-          <div class="country">المملكة الافتراضية</div>
+          <div class="country">مملكه VM</div>
           <div class="title">الهوية الوطنية</div>
         </div>
 
@@ -34,8 +34,8 @@
             <h2 id="cardName"></h2>
             <p>رقم الهوية: <span id="cardId"></span></p>
             <p>العمر: <span id="cardAge"></span></p>
-            <p>المدينة: <span id="cardCity"></span></p>
-            <p>PSN: <span id="cardPSN"></span></p>
+            <p>المدينه: <span id="cardCity"></span></p>
+            <p>يوزرك سوني: <span id="cardPSN"></span></p>
           </div>
 
         </div>
@@ -48,17 +48,17 @@
         <h3>معلومات السيرفر</h3>
 
         <div class="stat">
-          🟢 الحالة:
+           stat:
           <span class="online-dot"></span>
           Online
         </div>
 
         <div class="stat">
-          👑 المؤسس: VM Owner
+         ❄ Owner : Venom 
         </div>
 
         <div class="stat">
-          🧑‍💻 Dev: VENOM
+          ❄ Dev: ( Not specified ) 
         </div>
 
         <div class="stat">
@@ -73,6 +73,7 @@
     <div class="actions">
 
       <button onclick="location.href='rules.html'">القوانين</button>
+      <button onclick="location.href='rules.html'">جميع ال يلزم السيرفر</button>
       <button onclick="logout()">تسجيل خروج</button>
 
     </div>
