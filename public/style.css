@@ -1,5 +1,5 @@
 /* =========================
-   RESET + BASE
+   BASE RESET
 ========================= */
 
 *{
@@ -9,270 +9,206 @@
   font-family:Arial, sans-serif;
 }
 
-html, body{
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  background:#0f0f0f;
-  color:#fff;
+body{
+  background:#05070d;
+  color:#e6f1ff;
+  padding:20px;
+  line-height:1.6;
 }
 
 /* =========================
-   BACKGROUND (GRID)
+   CONTAINER (وثيقة مركزية)
 ========================= */
 
-.grid{
-  position:fixed;
-  inset:0;
-  z-index:1;
-
-  background-image:
-    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-
-  background-size:40px 40px;
+.container{
+  width:100%;
+  max-width:720px;
+  margin:auto;
 }
 
 /* =========================
-   CENTER WRAPPER (ثابت لكل الصفحات)
+   HEADER (شكل وثيقة رسمي)
 ========================= */
 
-.center-container{
-  width:100%;
-  height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-  z-index:10;
-  padding:15px;
+header{
+  text-align:center;
+  padding:25px 15px;
+  margin-bottom:25px;
+
+  background:linear-gradient(145deg,#0b1220,#070a12);
+  border:1px solid rgba(0,140,255,0.25);
+
+  border-radius:14px;
+
+  box-shadow:
+    0 0 20px rgba(0,140,255,0.15);
+}
+
+header h1{
+  font-size:1.6rem;
+  color:#4db5ff;
+  text-shadow:0 0 10px rgba(0,140,255,0.6);
+}
+
+header p{
+  font-size:0.9rem;
+  color:#a9c7e6;
 }
 
 /* =========================
-   CARD (موحد لكل الصفحات)
+   SECTION TITLE
+========================= */
+
+.section-title{
+  margin:25px 0 12px;
+  font-size:1.1rem;
+  color:#4db5ff;
+
+  border-right:3px solid #4db5ff;
+  padding-right:10px;
+
+  text-shadow:0 0 8px rgba(0,140,255,0.5);
+}
+
+/* =========================
+   CARD (كل جزء منفصل)
 ========================= */
 
 .card{
-  width:100%;
-  max-width:340px;
+  background:linear-gradient(145deg,#0a0f1a,#060912);
 
-  background:#1a1a1a;
-  border:1px solid #2c2c2c;
-
+  border:1px solid rgba(0,140,255,0.15);
   border-radius:14px;
-  padding:20px;
 
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+  padding:15px;
+  margin-bottom:15px;
 
-  box-shadow:0 0 20px rgba(255,255,255,0.03);
-}
-
-.card h1{
-  text-align:center;
-  font-size:1.6rem;
-  margin-bottom:10px;
-}
-
-.card p{
-  text-align:center;
-  color:#bbb;
-  font-size:14px;
+  box-shadow:
+    0 0 15px rgba(0,140,255,0.08);
 }
 
 /* =========================
-   INPUTS / SELECT
+   ALERT BOX (تحذير مهم)
 ========================= */
 
-input,
-select{
+.alert-box{
+  background:rgba(0,140,255,0.05);
+  border:1px solid rgba(0,140,255,0.25);
+
+  padding:12px;
+  border-radius:10px;
+
+  color:#cfe8ff;
+}
+
+/* =========================
+   TABLE (نظام احترافي)
+========================= */
+
+.table-container{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+th{
+  background:linear-gradient(145deg,#0d1b2a,#08111c);
+  color:#4db5ff;
+  padding:10px;
+  font-size:13px;
+
+  border:1px solid rgba(0,140,255,0.2);
+}
+
+td{
+  padding:10px;
+  border:1px solid rgba(0,140,255,0.15);
+  font-size:13px;
+  color:#d7e9ff;
+}
+
+/* =========================
+   RULES LIST (شكل وثيقة)
+========================= */
+
+.rules-list{
+  list-style:none;
+}
+
+.rules-list li{
+  position:relative;
+  padding:10px 10px 10px 25px;
+  margin-bottom:6px;
+
+  background:rgba(0,140,255,0.04);
+  border:1px solid rgba(0,140,255,0.1);
+
+  border-radius:10px;
+
+  color:#d7e9ff;
+}
+
+/* علامة نقطية متوهجة */
+.rules-list li::before{
+  content:"■";
+  position:absolute;
+  left:10px;
+  top:12px;
+
+  color:#4db5ff;
+  text-shadow:0 0 8px #4db5ff;
+}
+
+/* =========================
+   INFO BOX
+========================= */
+
+.info-box{
+  background:rgba(77,181,255,0.08);
+  border:1px solid rgba(77,181,255,0.25);
+
+  padding:12px;
+  border-radius:10px;
+
+  color:#cfe8ff;
+}
+
+/* =========================
+   PUNISHMENT (تمييز العقوبة)
+========================= */
+
+.punishment{
+  color:#ff4d6d;
+  font-weight:bold;
+  text-shadow:0 0 6px rgba(255,77,109,0.4);
+}
+
+/* =========================
+   BUTTON (تأكيد القراءة)
+========================= */
+
+.flat-btn{
   width:100%;
   padding:12px;
 
-  border-radius:8px;
-  border:1px solid #333;
-
-  background:#111;
+  background:linear-gradient(145deg,#0d6efd,#0a3d91);
   color:#fff;
 
-  font-size:14px;
-  outline:none;
-}
-
-input:focus,
-select:focus{
-  border-color:#666;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-button{
-  width:100%;
-  padding:12px;
-
   border:none;
-  border-radius:8px;
-
-  background:#fff;
-  color:#000;
+  border-radius:10px;
 
   font-weight:bold;
-  font-size:14px;
-
   cursor:pointer;
+
+  box-shadow:0 0 15px rgba(0,140,255,0.4);
   transition:0.2s;
 }
 
-button:hover{
-  background:#e5e5e5;
-}
-
-/* زر ثانوي (رجوع) */
-.back-btn{
-  background:transparent;
-  color:#fff;
-  border:1px solid #444;
-}
-
-.back-btn:hover{
-  background:#222;
-}
-
-/* =========================
-   DASHBOARD LAYOUT
-========================= */
-
-.dashboard{
-  width:100%;
-  max-width:900px;
-}
-
-.top-info{
-  display:flex;
-  gap:15px;
-  align-items:stretch;
-}
-
-/* =========================
-   ID CARD (بطاقة الهوية)
-========================= */
-
-.id-card{
-  flex:1;
-
-  background:linear-gradient(145deg,#ffffff,#eaeaea);
-  color:#000;
-
-  border-radius:16px;
-  padding:18px;
-
-  border:1px solid #ddd;
-  box-shadow:0 0 20px rgba(255,255,255,0.06);
-}
-
-.id-header{
-  display:flex;
-  justify-content:space-between;
-  font-weight:bold;
-  font-size:13px;
-  margin-bottom:10px;
-}
-
-.id-body{
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-
-.id-img{
-  width:75px;
-  height:75px;
-
-  border-radius:12px;
-  object-fit:cover;
-
-  border:2px solid #000;
-}
-
-.id-info h2{
-  font-size:16px;
-  margin-bottom:6px;
-}
-
-.id-info p{
-  font-size:13px;
-  margin:4px 0;
-}
-
-/* =========================
-   SERVER BOX
-========================= */
-
-.server-box{
-  flex:1;
-
-  background:#111;
-  border:1px solid #2a2a2a;
-
-  border-radius:16px;
-  padding:18px;
-
-  box-shadow:0 0 15px rgba(0,255,100,0.08);
-}
-
-.server-box h3{
-  margin-bottom:10px;
-}
-
-.stat{
-  margin:8px 0;
-  font-size:14px;
-  color:#ddd;
-}
-
-/* النقطة الخضراء */
-.online-dot{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:#00ff66;
-  display:inline-block;
-
-  box-shadow:0 0 10px #00ff66;
-}
-
-/* =========================
-   ACTIONS
-========================= */
-
-.actions{
-  margin-top:15px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-/* =========================
-   HIDDEN
-========================= */
-
-.hidden{
-  display:none;
-}
-
-/* =========================
-   MOBILE FIX (ثبات الشكل)
-========================= */
-
-@media(max-width:768px){
-  .top-info{
-    flex-direction:column;
-  }
-
-  .card{
-    max-width:340px;
-  }
+.flat-btn:hover{
+  transform:scale(1.02);
+  box-shadow:0 0 20px rgba(0,140,255,0.6);
 }
