@@ -144,7 +144,7 @@ header p{
 
 <!-- LOGO -->
 <div class="logo">
-  <img src="/storage/emulated/0/vm/image/vm.jpg" alt="VM Logo">
+  <img src="cd /sdcard/vm/image/vm.jpg" alt="VM Logo">
 </div>
 
 <!-- HEADER -->
