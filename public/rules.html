@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>قوانين سيرفر VM</title>
+<title>قوانين السيرفر</title>
 
 <style>
+
 /* =========================
    BASE
 ========================= */
@@ -27,7 +28,7 @@ body{
    CONTAINER
 ========================= */
 .container{
-  max-width:780px;
+  max-width:850px;
   margin:auto;
 }
 
@@ -47,27 +48,26 @@ header{
 }
 
 header h1{
-  font-size:1.6rem;
   color:#4db5ff;
+  font-size:1.6rem;
   text-shadow:0 0 10px rgba(0,140,255,0.6);
 }
 
 header p{
   color:#a9c7e6;
   font-size:0.9rem;
-  margin-top:5px;
 }
 
 /* =========================
-   TITLES
+   SECTION TITLE
 ========================= */
 .section-title{
   margin:22px 0 10px;
-  font-size:1.1rem;
-  color:#4db5ff;
-
-  border-right:3px solid #4db5ff;
   padding-right:10px;
+  border-right:3px solid #4db5ff;
+
+  color:#4db5ff;
+  font-size:1.1rem;
 
   text-shadow:0 0 8px rgba(0,140,255,0.4);
 }
@@ -88,67 +88,15 @@ header p{
 }
 
 /* =========================
-   ALERT / INFO
+   LIST
 ========================= */
-.alert-box{
-  background:rgba(0,140,255,0.06);
-  border:1px solid rgba(0,140,255,0.25);
-
-  padding:12px;
-  border-radius:10px;
-
-  color:#cfe8ff;
-  font-size:0.9rem;
-}
-
-.info-box{
-  background:rgba(77,181,255,0.08);
-  border:1px solid rgba(77,181,255,0.25);
-
-  padding:12px;
-  border-radius:10px;
-
-  color:#cfe8ff;
-}
-
-/* =========================
-   TABLE
-========================= */
-.table-container{
-  overflow-x:auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:10px;
-}
-
-th{
-  background:linear-gradient(145deg,#0d1b2a,#08111c);
-  color:#4db5ff;
-
-  padding:10px;
-  border:1px solid rgba(0,140,255,0.2);
-  font-size:13px;
-}
-
-td{
-  padding:10px;
-  border:1px solid rgba(0,140,255,0.15);
-  font-size:13px;
-  color:#d7e9ff;
-}
-
-/* =========================
-   RULES LIST
-========================= */
-.rules-list{
+ul{
   list-style:none;
 }
 
-.rules-list li{
+li{
   position:relative;
+
   padding:10px 10px 10px 25px;
   margin-bottom:8px;
 
@@ -159,7 +107,7 @@ td{
   color:#d7e9ff;
 }
 
-.rules-list li::before{
+li::before{
   content:"■";
   position:absolute;
   left:10px;
@@ -170,49 +118,23 @@ td{
 }
 
 /* =========================
-   PUNISHMENT
+   WARNING TEXT
 ========================= */
-.punishment{
+.bad{
   color:#ff4d6d;
   font-weight:bold;
   text-shadow:0 0 6px rgba(255,77,109,0.4);
 }
 
 /* =========================
-   BUTTON
+   SMALL TITLE INSIDE CARD
 ========================= */
-.flat-btn{
-  width:100%;
-  padding:12px;
-
-  margin-top:15px;
-
-  background:linear-gradient(145deg,#0d6efd,#0a3d91);
-  color:#fff;
-
-  border:none;
-  border-radius:10px;
-
+.sub-title{
+  color:#4db5ff;
+  margin-bottom:10px;
   font-weight:bold;
-  cursor:pointer;
-
-  box-shadow:0 0 15px rgba(0,140,255,0.4);
-  transition:0.2s;
 }
 
-.flat-btn:hover{
-  transform:scale(1.02);
-  box-shadow:0 0 20px rgba(0,140,255,0.6);
-}
-
-/* =========================
-   MOBILE
-========================= */
-@media(max-width:600px){
-  body{
-    padding:12px;
-  }
-}
 </style>
 
 </head>
@@ -222,56 +144,105 @@ td{
 <div class="container">
 
 <header>
-    <h1>سيرفر VM | القوانين</h1>
-    <p>الرجاء الالتزام التام بالقوانين لتجنب العقوبات</p>
+  <h1>قوانين السيرفر</h1>
+  <p>الرجاء الالتزام بالقوانين لتجنب العقوبات</p>
 </header>
 
-<!-- ===== باقي المحتوى بدون تغيير ===== -->
+<!-- ===================== -->
+<h2 class="section-title">السرقات</h2>
 
-<h2 class="section-title">نظام السرقات وتفاصيلها</h2>
 <div class="card">
-    <div class="alert-box">
-        <strong>ملاحظة إجبارية:</strong> العدد الإجباري للمشاركين بالسرقة يجب أن يكون نفس المكتوب تماماً لا يزيد ولا ينقص!
-    </div>
 
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>نوع السرقة</th>
-                    <th>عدد المشاركين</th>
-                    <th>المبلغ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>سرقة الحلاق</td><td>1-3</td><td>3000$</td></tr>
-                <tr><td>سرقة البقالة</td><td>2-5</td><td>5000$</td></tr>
-                <tr><td>سرقة الملابس</td><td>2-6</td><td>10000$</td></tr>
-                <tr><td>سرقة الأسلحة</td><td>4-6</td><td>12000$</td></tr>
-                <tr><td>البنك المركزي</td><td>6-10</td><td>20000$</td></tr>
-            </tbody>
-        </table>
-    </div>
+<div class="sub-title">عدد المشاركين</div>
+<ul>
+<li>سرقة الحلاق: من 1 إلى 3</li>
+<li>سرقة البقالة: من 2 إلى 5</li>
+<li>سرقة محل الملابس: من 2 إلى 6</li>
+<li>سرقة محل الأسلحة: من 4 إلى 6</li>
+<li>سرقة البنك المركزي: من 6 إلى 10</li>
+</ul>
+
+<div class="sub-title">المبالغ</div>
+<ul>
+<li>الحلاق: 3000$</li>
+<li>البقالة: 5000$</li>
+<li>الملابس: 10000$</li>
+<li>الأسلحة: 12000$ + SNS</li>
+<li>البنك المركزي: 20000$</li>
+</ul>
+
+<p class="bad">
+✔ العدد إجباري لا يزيد ولا ينقص<br>
+✔ الشرطة تزيد +1 عن عدد المجرمين<br>
+✔ ممنوع التواجد أكثر من العدد المذكور
+</p>
+
 </div>
 
-<h2 class="section-title">عقوبات الباند الفوري</h2>
+<!-- ===================== -->
+<h2 class="section-title">عقوبات خطيرة</h2>
+
 <div class="card">
-    <div class="alert-box">
-        أي مخالفة خطيرة = <span class="punishment">باند مباشر</span>
-    </div>
+<ul>
+<li>أي شخص يذبح ويتحرك = باند يومين</li>
+<li>التكرار = باند نهائي ⚔️</li>
+<li>سحب أي سلاح من غير سلاح = باند نهائي</li>
+</ul>
 </div>
 
-<h2 class="section-title">قوانين الـ Roleplay</h2>
+<!-- ===================== -->
+<h2 class="section-title">قوانين القتال والرول بلاي</h2>
+
 <div class="card">
-    <ul class="rules-list">
-        <li>ممنوع إطلاق النار أثناء القيادة.</li>
-        <li>ممنوع القتل بدون سبب.</li>
-        <li>ممنوع سحب سلاح غير موجود.</li>
-        <li>احترام جميع اللاعبين إلزامي.</li>
-    </ul>
+<ul>
+<li>ممنوع تطلق وأنت تسوق (المرافق فقط)</li>
+<li>ممنوع تعدم بدون عداوة 4 أقيام</li>
+<li>ممنوع سلاح مو عندك</li>
+<li>ممنوع قتل بدون سبب</li>
+<li>ممنوع دخول بيت مو لك</li>
+<li>الكلبشة: تضرب بوكس قبلها</li>
+<li>إذا مسقط وممسوك ممنوع تتحلل</li>
+<li>تفجير 3 كفرات = توقف إجباري</li>
+<li>مسموح دراجات نارية</li>
+<li>السكين = إسقاط</li>
+<li>العجرة 3 دقائق / الفأس إسقاط</li>
+<li>الأسلحة: إسقاط + إنعاش بطريقة RP</li>
+<li>ممنوع قتل الرقابة أو التعامل معهم = باند</li>
+<li>خطف العسكر من 5+ فقط</li>
+<li>مسموح خطف شخص واحد فقط</li>
+<li>ممنوع الهروب أثناء الإنعاش</li>
+<li>سرقة التاكسي ممنوعة</li>
+<li>تلويت العسكري ممنوع = باند</li>
+<li>السب داخل وخارج الرول = باند نهائي</li>
+<li>الاقتراب من الشرطة أثناء الاصطفاف ممنوع</li>
+</ul>
 </div>
 
-<button class="flat-btn">موافق، تم قراءة القوانين</button>
+<!-- ===================== -->
+<h2 class="section-title">مخالفات عامة</h2>
+
+<div class="card">
+<ul>
+<li>دخول القسم أول 10 دقائق = باند قيم</li>
+<li>الطلق بالمناطق العامة = باند 3 أقيام</li>
+<li>سرقة سيارة بدون شراء = باند 2 أقيام</li>
+<li>الشتم = باند 5 أقيام</li>
+<li>الكذب على الرقابة = باند 5 أقيام</li>
+</ul>
+</div>
+
+<!-- ===================== -->
+<h2 class="section-title">التواصل والتفاوض</h2>
+
+<div class="card">
+<ul>
+<li>ممنوع أي مشاكل داخل الرول</li>
+<li>التواصل مع الأونر: Opaida_O</li>
+<li>ممنوع التعدي بالكلام أثناء التفاوض</li>
+<li>التفاوض فقط لمصلحة اللعبة</li>
+<li>أي تخريب يتم تجاهله وعدم الرد</li>
+</ul>
+</div>
 
 </div>
 
