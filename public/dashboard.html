@@ -4,53 +4,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>الهوية الوطنية</title>
-
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="card.css">
 </head>
 
 <body>
 
+<div class="grid"></div>
+
 <div class="center-container">
 
-  <div class="id-card">
+  <div class="dashboard">
 
-    <!-- HEADER -->
-    <div class="id-header">
-      <div>VM GOVERNMENT</div>
-      <div>IDENTITY CARD</div>
-    </div>
+    <!-- TOP LAYOUT -->
+    <div class="top-info">
 
-    <!-- BODY -->
-    <div class="id-body">
+      <!-- ID CARD -->
+      <div class="id-card">
 
-      <img id="cardImage" class="id-img">
+        <div class="id-header">
+          <div class="country">مملكه VM</div>
+          <div class="title">الهوية الوطنية</div>
+        </div>
 
-      <div class="id-info">
-        <h2 id="cardName"></h2>
+        <div class="id-body">
 
-        <p>ID: <span id="cardId"></span></p>
-        <p>Age: <span id="cardAge"></span></p>
-        <p>City: <span id="cardCity"></span></p>
-        <p>PSN: <span id="cardPSN"></span></p>
+          <img id="cardImage" class="id-img" />
+
+          <div class="id-info">
+            <h2 id="cardName"></h2>
+            <p>رقم الهوية: <span id="cardId"></span></p>
+            <p>العمر: <span id="cardAge"></span></p>
+            <p>المدينة: <span id="cardCity"></span></p>
+            <p>PSN: <span id="cardPSN"></span></p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- SERVER INFO -->
+      <div class="server-box">
+
+        <h3>معلومات السيرفر</h3>
+
+        <div class="stat">
+          🟢 الحالة:
+          <span class="online-dot"></span>
+          Online
+        </div>
+
+        <div class="stat">
+          المؤسس: Venom 
+        </div>
+
+        <div class="stat">
+          🧑‍💻 Dev: ( Not specified ) 
+        </div>
+
+        <div class="stat">
+          👥 اللاعبين: <span id="playerCount">0</span>
+        </div>
 
       </div>
 
     </div>
 
-    <!-- FOOTER -->
-    <div class="id-footer">
-      <div class="status">🟢 ACTIVE CITIZEN</div>
+    <!-- ACTIONS -->
+    <div class="actions">
+
+      <button onclick="location.href='rules.html'">القوانين</button>
+      <button onclick="logout()">تسجيل خروج</button>
+
     </div>
 
   </div>
 
-</div>
-
-<div class="actions">
-  <button onclick="location.href='index.html'">خروج</button>
-  <button onclick="location.href='rules.html'">القوانين</button>
-  <button onclick="logout()">تسجيل خروج</button>
 </div>
 
 <script src="script.js"></script>
