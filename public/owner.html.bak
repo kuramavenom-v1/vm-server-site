@@ -32,36 +32,6 @@ body{
 }
 
 /* =========================
-   LOGO
-========================= */
-.logo{
-  text-align:center;
-  margin-bottom:15px;
-}
-
-.logo img{
-  width:120px;
-  height:120px;
-  object-fit:cover;
-
-  border-radius:18px;
-
-  border:1px solid rgba(0,140,255,0.4);
-  box-shadow:0 0 18px rgba(0,140,255,0.25);
-
-  animation: glow 2.5s infinite alternate;
-}
-
-@keyframes glow{
-  from{
-    box-shadow:0 0 10px rgba(0,140,255,0.2);
-  }
-  to{
-    box-shadow:0 0 25px rgba(0,140,255,0.6);
-  }
-}
-
-/* =========================
    HEADER
 ========================= */
 header{
@@ -98,6 +68,7 @@ header p{
 }
 
 .btn{
+  position:relative;
   width:100%;
   padding:14px;
 
@@ -130,6 +101,9 @@ header p{
   font-weight:normal;
 }
 
+/* =========================
+   CLICK EFFECT
+========================= */
 .btn:active{
   transform:scale(0.98);
 }
@@ -142,35 +116,32 @@ header p{
 
 <div class="container">
 
-<!-- LOGO -->
-<div class="logo">
-  <img src="/storage/emulated/0/vm/image/vm.jpg" alt="VM Logo">
-</div>
-
-<!-- HEADER -->
 <header>
   <h1>روابط السيرفر</h1>
   <p>جميع روابط التواصل الرسمية</p>
 </header>
 
-<!-- BUTTONS -->
 <div class="links">
 
+  <!-- واتس قناة -->
   <button class="btn" onclick="openLink('https://whatsapp.com/channel/0029Vb8BhcxHwXbIcEB4NA1V')">
     قناة السيرفر - WA
     <div class="small">WhatsApp Channel</div>
   </button>
 
+  <!-- تيك توك -->
   <button class="btn" onclick="openLink('https://www.tiktok.com/@vm_server')">
     قناة السيرفر - TikTok
     <div class="small">TikTok Official</div>
   </button>
 
+  <!-- واتس اونر -->
   <button class="btn" onclick="openLink('https://wa.me/201214684186')">
     التواصل مع الأونر - WhatsApp
     <div class="small">Chat Direct</div>
   </button>
 
+  <!-- تيلي اونر -->
   <button class="btn" onclick="openLink('https://t.me/V_K_U1')">
     التواصل مع الأونر - Telegram
     <div class="small">@V_K_U1</div>
