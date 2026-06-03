@@ -1,42 +1,53 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>إنشاء هوية</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>إنشاء هوية جديدة</h1>
+<div class="grid"></div>
 
 <div class="center-container">
-  <div class="card">
 
-    <h1>إنشاء هوية جديدة</h1>
+<!-- ========== REGISTER ========== -->
+<div class="card" id="registerBox">
 
-    <input type="text" id="name" placeholder="الاسم الكامل">
+    <h1>إنشاء هوية</h1>
 
-    <input type="number" id="age" placeholder="العمر">
+    <input id="name" placeholder="الاسم">
+    <input id="age" placeholder="العمر">
 
+    <!-- المدينة (ثابتة) -->
     <select id="city">
-      <option value="">اختر المدينة</option>
-      <option value="Los Santos">Los Santos</option>
-      <option value="Paleto Bay">Paleto Bay</option>
-      <option value="Sandy Shores">Sandy Shores</option>
+        <option value="">اختر المدينة</option>
+        <option value="Los Santos">Los Santos</option>
+        <option value="Blaine County">Blaine County</option>
+        <option value="Paleto Bay">Paleto Bay</option>
     </select>
 
-    <input type="text" id="psn" placeholder="PSN">
+    <input id="psn" placeholder="PSN">
 
-    <button onclick="createIdentity()">
-      إنشاء الهوية
-    </button>
+    <button onclick="createIdentity()">إنشاء الهوية</button>
 
-    <button onclick="location.href='index.html'">
-      رجوع
-    </button>
+</div>
 
-  </div>
+
+<!-- ========== DASHBOARD بعد الإنشاء ========== -->
+<div class="card hidden" id="dashboardBox">
+
+    <h1>تم إنشاء الهوية</h1>
+
+    <p id="outName"></p>
+    <p id="outId"></p>
+    <p id="outCity"></p>
+    <p id="outPSN"></p>
+
+</div>
+
 </div>
 
 <script src="script.js"></script>

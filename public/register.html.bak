@@ -13,17 +13,17 @@
 <div class="center-container">
   <div class="card">
 
-    <h1>إنشاء هوية</h1>
+    <h1>إنشاء هوية جديدة</h1>
 
-    <input type="text" id="name" placeholder="الاسم">
+    <input type="text" id="name" placeholder="الاسم الكامل">
 
     <input type="number" id="age" placeholder="العمر">
 
     <select id="city">
       <option value="">اختر المدينة</option>
       <option value="Los Santos">Los Santos</option>
-      <option value="Blaine County">Blaine County</option>
       <option value="Paleto Bay">Paleto Bay</option>
+      <option value="Sandy Shores">Sandy Shores</option>
     </select>
 
     <input type="text" id="psn" placeholder="PSN">
@@ -38,6 +38,7 @@
 
   </div>
 </div>
+
 <script src="script.js"></script>
 </body>
 </html>
